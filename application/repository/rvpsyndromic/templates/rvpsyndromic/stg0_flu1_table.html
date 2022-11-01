@@ -1,0 +1,47 @@
+
+{% extends "rvpsyndromic/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+
+<header>
+	<h1>
+	</h1>
+<div>
+</div>
+</header>
+
+<!--<table class='aliquot'>-->
+<table id="table_format" class="table table-bordered" >
+	<thead>
+		<tr>
+			<th> Insert Date </th>
+		</tr>
+		<tr class="notformatted">
+			<th> Insert Date </th>
+		</tr>
+		</thead>
+		<tbody>
+						
+			{% for a in found_entries %}
+			<tr>
+				<td>{% if a.sample%}<a href="{#% url 'search:aliquot_detail' a.boxid%#}"> {{a.sample}}</a> {%else%}-Error- {% endif %} </td>
+
+
+			</tr>
+			{% endfor %}
+		</tbody>
+		<tfoot class="foot">
+			<tr class="foot">
+				
+				<td colspan="1"> <button class="floater" name="update" type="submit" >Check Out</button></td>
+				</form>
+			<td colspan="10"></td>	
+				<td colspan="1"></td>
+			</tr>
+		</tfoot>
+		</table>
+
+{%endblock%}

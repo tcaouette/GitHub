@@ -1,0 +1,187 @@
+{% extends 'search/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/form.css' %}">
+
+<header>
+<h1> Update an Aliquot  </h1>
+
+<h2> The current aliquot selected is {{ object }} </h2>
+</header>
+<table>
+ 
+<form action="" method="POST" >
+{% csrf_token%}
+<div class="form-row">
+<!--	<div class="form-group col-md-2 mb-0">
+		{#{form.lotid|as_crispy_field}#}
+	</div>-->
+	<div class="form-group col-md-2 mb-0">
+		{{form.trialkey|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.studyid|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.studydesc|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.aqid|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.originalid|as_crispy_field}}
+	</div>
+</div>
+<br>
+<div class="form-row">
+	<div class="form-group col-md-2 mb-0">
+		{{form.boxid|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.grid|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.insertdate|as_crispy_field}}
+	</div>
+	
+	<div class="form-group col-md-2 mb-0">
+		{{form.invnum|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.freeze_thaw|as_crispy_field}}
+	</div>
+</div>
+<br>
+<br>
+<div class="form-row">
+	<div class="form-group col-md-3 mb-0">
+		{{form.checkout|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.volume|as_crispy_field}}
+	</div>
+	
+	<div class="form-group col-md-3 mb-0">
+		{{form.age|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.gender|as_crispy_field}}
+	</div>
+</div>
+<br>
+<div class="form-row">
+	<div class="form-group col-md-3 mb-0">
+		{{form.demogroup|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.riskcategory|as_crispy_field}}
+	</div>
+	
+	<div class="form-group col-md-3 mb-0">
+		{{form.riskgroupdesc|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.bloodtype|as_crispy_field}}
+	</div>
+</div>
+<br>
+<div class="form-row">
+	<div class="form-group col-md-1 mb-0">
+		{{form.hiv1|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.hiv2|as_crispy_field}}
+	</div>
+	
+	<div class="form-group col-md-1 mb-0">
+		{{form.hivo|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.hbs|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.hbc|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.hav|as_crispy_field}}
+	</div>
+	
+	<div class="form-group col-md-1 mb-0">
+		{{form.hcv|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.mmrv|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.influenza|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.sars_cov2|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.other|as_crispy_field}}
+	</div>
+</div>
+<br>
+<div class="form-row">
+	<div class="form-group col-md-3 mb-0">
+		{{form.manufacturer|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.panelname|as_crispy_field}}
+	</div>
+	
+	<div class="form-group col-md-3 mb-0">
+		{{form.paneldesc|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.membernum|as_crispy_field}}
+	</div>
+</div>
+<br>
+<div class="form-row">
+	<div class="form-group col-md-3 mb-0">
+		{{form.samtypedesc|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.samprepdesc|as_crispy_field}}
+	</div>
+	
+	<div class="form-group col-md-3 mb-0">
+		{{form.dup|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.isconfirmed|as_crispy_field}}
+	</div>
+</div>
+<br>
+<div class="form-row">
+	<div class="form-group col-md-3 mb-0">
+		{{form.invcomment|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.labelinfo|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.notes|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.reason|as_crispy_field}}
+	</div>
+
+</div>
+<br>
+		
+	
+		
+		
+
+
+{#{ form|crispy }#}
+
+<input type="submit" class="btn btn-block" value="Submit">
+</form>
+</table>
+{% endblock %}

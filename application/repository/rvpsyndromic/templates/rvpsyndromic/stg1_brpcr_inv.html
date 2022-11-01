@@ -1,0 +1,98 @@
+
+{% extends "rvpsyndromic/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+
+<header>
+<h1> Site Investigational Excluded Results</h1>
+<div>
+</div>
+</header>
+
+<!--<table class='aliquot'>-->
+<table id="table_format" class="table table-bordered" >
+	<thead>
+		<tr>
+			<th>Sample ID  </th>
+			<th>Site </th>
+			<th>Equipment </th>
+			<th>Test Name </th>
+			<th>Test Date </th>
+			<th>Kit Name  </th>
+			<th>Kit Lot  </th>
+			<th>Kit Exp  </th>
+			<th>Operator  </th>
+			<th>Well  </th>
+			<th>CoV2 Concentration  </th>
+			<th>InfA Concentration  </th>
+			<th>InfB Concentration  </th>
+			<th>RP Concentration  </th>
+			<th>CoV2 Interp  </th>
+			<th>Influ A Interp  </th>
+			<th>Influ B Interp  </th>
+			<th>RP Interp  </th>
+			<th>Notes  </th>
+			<th>Excluded?  </th>
+		</tr>
+		<tr class="notformatted">
+			<th>Sample ID  </th>
+			<th>Site </th>
+			<th>Equipment </th>
+			<th>Test Name </th>
+			<th>Test Date </th>
+			<th>Kit Name  </th>
+			<th>Kit Lot  </th>
+			<th>Kit Exp  </th>
+			<th>Operator  </th>
+			<th>Well  </th>
+			<th>CoV2 Concentration  </th>
+			<th>InfA Concentration  </th>
+			<th>InfB Concentration  </th>
+			<th>RP Concentration  </th>
+			<th>CoV2 Interp  </th>
+			<th>Influ A Interp  </th>
+			<th>Influ B Interp  </th>
+			<th>RP Interp  </th>
+			<th>Notes  </th>
+			<th>Excluded?  </th>
+		</tr>
+		</thead>
+		<tbody>
+						
+			{% for b in brpcrinv %}
+			<tr>
+    		<td>	{{b.sampleid}} </td>
+    			<td>{{b.inv_site}}</td>
+    			<td>{{b.inv_equipment}} </td>
+    			<td>{{b.inv_test_name}}</td>
+    			<td>{{b.inv_test_date}} </td>
+    			<td>{{b.inv_kit_name}}</td>
+    			<td>{{b.inv_kit_lotid}}</td>
+			<td>{{b.inv_kit_expiration_date}}</td>
+    			<td>{{b.inv_operator}}</td>
+    			<td>{{b.inv_well_id}}</td>
+    		<td>    {{b.inv_sarscov2_concentration}}</td>
+    		<td>	{{b.inv_infa_concentration}}</td>
+    			<td>{{b.inv_infb_concentration}}</td>
+    			<td>{{b.inv_rp_concentration}}</td>
+    		<td>	{{b.inv_sarscov2_interpretation}}</td>
+    		<td>	{{b.inv_infa_interpretation}}</td>
+    		<td>	{{b.inv_infb_interpretation}}</td>
+    		<td>	{{b.inv_rp_interpretation}}</td>
+    		<td>	{{b.inv_notes}}</td>
+    		<td>	{{b.excl_flag}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+
+{%endblock%}
+    
+
+
+
+
+

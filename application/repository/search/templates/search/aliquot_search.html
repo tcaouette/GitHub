@@ -1,0 +1,86 @@
+
+{% extends "search/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+<h1> Haystack Search </h1>
+
+
+<table id="table_format" class="table table-bordered" >
+	<thead>
+		<tr>
+			<th> Select Aliquot </th>
+			<th> Cage </th>
+			<th> Cane </th>
+			<th> Stack </th>
+			<th> Freezer </th>
+			<th> Box ID </th>
+			<th> AQID </th>
+			<th> Original ID </th>
+			<th> Grid </th>
+			<th> Label Information </th>
+			<th> Volume (mL) </th>
+			<th> Insert Date </th>
+		</tr>
+		<tr class="notformatted">
+			<th> Select Aliquot </th>
+			<th> Cage </th>
+			<th> Cane </th>
+			<th> Stack </th>
+			<th> Freezer </th>
+			<th> Box ID </th>
+			<th> AQID </th>
+			<th> Original ID </th>
+			<th> Grid </th>
+			<th> Label Information </th>
+			<th> Volume (mL) </th>
+			<th> Insert Date </th>
+		</tr>
+		</thead>
+		<tbody>
+						
+			{% for a in aliquot %}
+			<tr>
+				<td>{% if a.boxid %}<input type="checkbox" value="{{a.aqid}}" name="for_action" id="for_action"> {% endif %}</td> 
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.boxid.cage}}</a>{%else %}-Error No Box ID- {% endif %} </td>
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.boxid.cane}}</a>{%else %}-Error No Box ID- {% endif %} </td>
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.boxid.stack}}</a>{%else %}-Error No Box ID- {% endif %} </td>
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.boxid.freezer}}</a>{%else %}-Error No Box ID- {% endif %} </td>
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.boxid}}</a>{%else%}-Error No Box ID- {% endif %} </td>
+				
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.aqid}}</a>  {%else %}-Error No Box ID- {% endif %} </td>
+			
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.originalid}}</a> {%else %}-Error No Box ID- {% endif %} </td>
+				
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.grid}}</a> {%else %}-Error No Box ID- {% endif %} </td>
+
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.labelinfo}}</a>{%else%}-Error No Box ID- {% endif %} </td>
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.volume}}</a>{%else%}-Error No Box ID- {% endif %} </td>
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.insertdate}}</a> {%else%}-Error No Box ID- {% endif %} </td>
+
+
+			</tr>
+			{% endfor %}
+		</tbody>
+		<tfoot class="foot">
+			<tr class="foot">
+				
+				<td colspan="1"> <button class="floater" name="update" type="submit" >Check Out</button></td>
+				</form>
+			<td colspan="10"></td>	
+				<td colspan="1"></td>
+			</tr>
+		</tfoot>
+		</table>
+
+
+
+
+
+
+
+
+{% endblock %}
+

@@ -1,0 +1,63 @@
+{% extends "search/base.html" %}
+	{% block content %}
+{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static "search/list.css" %}">
+	<header class="grid-header">
+	<h1> Aliquot page! </h2>
+	</header>
+	<br>
+	<br>
+		<form method="GET">
+			<input type="search" class="form-control" name="search" placeholder ="Search...">
+		</form>
+	<ul>
+	<p> Aliquots:</p>
+	
+	
+	
+
+	<table class="content-pattern">
+		<tr> 
+			<th> Contents</th>
+			<th> BOX ID </th>
+		
+		</tr>
+		{% for b in box %}
+		{% if b.boxid %}
+		<tr>
+			<td> {{ b.contents }} </td>
+			<td> {{ b.boxid }}
+		</tr>
+		{% endif %}
+		{% endfor %}
+	
+	</table>
+	<table class="grid-pattern">
+		<tr> 
+			<th> Aliquot ID </th>
+			<th> Box ID </th>
+			<th> Cage </th>
+			<th> Grid </th>
+			<th> Freezer </th>
+			<th> Volume </th>
+			<th> Checked Out </th>
+	
+		</tr>
+			{% for a in aliquot %}
+			<tr>
+				<td> {{ a.aqid }} - <a href="{% url 'aliquot_update' a.aqid %}">Update</a> </td>
+				<td> {{ a.boxid }} </td>
+				<td> {{ a.boxid.cage }} </td>
+				<td> {{ a.grid }} </td>
+				<td> {{ a.boxid.freezer }} </td>
+				<td> {{ a.volume }} </td>
+				<td> {{ a.checked_out }} </td>
+			
+			</tr>
+			{% endfor %}
+			
+	</table>
+
+	{% endblock %}		
+
+

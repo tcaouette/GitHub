@@ -1,0 +1,19 @@
+{% extends "search/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1> Delete Aliquots </h1>
+
+<p>Delete Action is final after Confirm is pressed. Please Note Relavent Information Before Deletion. </p>
+
+<form action="" method="POST">
+{% csrf_token %}
+
+<p> Are you sure you want to delete {{ aliquot }}?</p>
+
+
+<input type="submit" class="btn btn-block" value="Confirm">
+
+<!--<input type="submit"  value="Confirm">-->
+</form>
+
+{% endblock %}

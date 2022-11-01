@@ -1,0 +1,54 @@
+
+
+
+{% extends "search/base.html" %}
+	{% block content %}
+
+	{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static "search/dktest.css" %}">
+		<div class = "row">
+			<div class="column">
+				<img class= "center" src="https://www.bio-rad.com/webroot/web/images/global/global/english/cdg.jpg" alt= "cdg">
+			</div>
+			<div class="column">
+				<img class= "center" src="https://www.bio-rad.com/webroot/web/images/global/global/english/lsr.jpg" alt= "lsr">
+			</div>
+		</div>
+		<br />
+
+		<form method="GET">
+			<input type="search" class="form-control" name="search" placeholder ="Search...">
+		</form>
+	<ul>
+	<p> Freezer A has the following counts:</p>
+		<li><strong>Freezer A:</strong> {{ num_freezer }} </li>
+	<table>
+	<tr>
+		<th>Aliquot ID</th>
+		<th>Original ID</th>
+		<th>Box ID</th>
+		<th>Grid Location</th>
+		<th>Label Info</th>
+		<th>Volume (mL)</th>
+		<th>Insert Date</th>
+		<th>Inventory Number</th>
+		<th>Comments</th>
+	</tr>
+	{% for i in freezer %}
+	<tr>
+		
+		<td>{{i.aqid }} </td>
+		<td>{{i.originalid }} </td>
+		<td>{{i.boxid }} </td>
+		<td>{{i.grid }} </td>
+		<td>{{i.labelinfo }} </td>
+		<td>{{i.volume }} </td>
+		<td>{{i.insertdate }} </td>
+		<td>{{i.invnum }} </td>
+		<td>{{i.invcomment }} </td>
+	</tr>
+		
+	{% endfor %}	
+	</table>
+
+{% endblock %}

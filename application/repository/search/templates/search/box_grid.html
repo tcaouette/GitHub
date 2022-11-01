@@ -1,0 +1,23 @@
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+
+<h1>Box Grid</h1>
+
+<div id="box">
+
+</div>
+<script>
+var x = {{x}};
+var pos_id ={{pos_10_id|safe}}
+var pos = {{pos_list|safe}}
+</script>
+<script src="{% static 'search/box.js' %}" >
+
+
+
+</script>
+
+{% endblock %}

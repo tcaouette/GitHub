@@ -1,0 +1,43 @@
+
+.grid-container {
+display:grid;
+grid-template-columns: auto auto auto;
+grid-gap:20px;
+padding:10px;
+border-radius:10px;
+
+}
+.grid-item{
+background-color:#D3D3D3;
+border:1px solid black;
+text-align:center;
+font-size:30px;
+border-radius:10px;
+}
+
+h1{
+margin:10px;
+font-family:helvetica;
+}
+header{
+padding:20px;
+text-align:center;
+color:#000000;
+font-size:15px;
+border-radius:10px;
+width:100%
+overflow:hidden;
+margin-bottom:50px;
+}
+body{
+background-color:#f2f2f2;
+}
+.footer{
+position:fixed;
+left:0;
+bottom:0;
+width:100%;
+background-color:#C0C0C0;
+color:#000000;
+text-align:center;
+}

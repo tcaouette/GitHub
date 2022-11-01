@@ -1,0 +1,87 @@
+
+{% extends "rvpsyndromic/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+		{% if messages %}
+			<div class='alert alert-success'>
+			{% for message in messages %}
+				{{message}}
+			{%endfor%}
+			</div>
+		{%endif%}
+<h1>InfA/InfB/RSV Reference Data Entry Form  </h1>
+<br>
+<br>
+
+<form action='.' method="POST">
+{% csrf_token%}
+{#{ form|crispy }#}
+<div class="form-row">
+	<div class="form-group col-md-3 mb-0">
+		{{form.refflufile_name|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.reffluoperator|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.refflu_date|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.refflukitname|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.refflukitlot|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.refflukitexp|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.sample|as_crispy_field}}
+	</div>
+</div>
+<br>
+
+<div class="form-row">
+	<div class="form-group col-md-4 mb-0">
+		{{form.refflua_well|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.refflua_cqvalue|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.refflua_interp|as_crispy_field}}
+	</div>
+
+
+</div>
+</br>
+<div class="form-row">
+	<div class="form-group col-md-4 mb-0">
+		{{form.refflub_cqvalue|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.refflub_interp|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.refrsv_cqvalue|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.refrsv_interp|as_crispy_field}}
+	</div>
+
+
+</div>
+</br>
+<div class="form-row">
+	<div class="form-group col-md-8 mb-0">
+		{{form.refnotes|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-8 mb-0">
+		{{form.reffluexcld|as_crispy_field}}
+	</div>
+
+</div>
+</br>
+<input type="submit" class="btn btn-block" value="Submit">
+</form>
+{% endblock %}

@@ -1,0 +1,54 @@
+
+{% extends "rvpsyndromic/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+		{% if messages %}
+			<div class='alert alert-success'>
+			{% for message in messages %}
+				{{message}}
+			{%endfor%}
+			</div>
+		{%endif%}
+<header>
+	
+	<h1> Updates Page </h1>
+	<p> Welcome to the Syndromic Panel App!</p>
+
+	
+
+
+</header>
+<style>
+
+</style>	
+<body>
+
+
+
+</body>	
+<div class="grid-container">
+		{% if  user.get_username == 'datamgt' or user.get_username == 'dk_admin' or user.get_username == 'lsutton' or user.get_username == 'LMclaughlin' %}
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_flu_create'%}>InfA/InfB/RSV Reference Update Form</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_brpcr_create'%}>Site Investigational Update Form</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_ecrf_create'%}>Electronic Case Report Update Form</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_cov2_create'%}>SARS-CoV-2 Reference Update Form </a></li></div>
+		{% elif user.get_username == 'PVakharia' or user.get_username == 'user2' %}
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_flu_create'%}>InfA/InfB/RSV Reference Update Form</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_brpcr_create'%}>Site Investigational Update Form</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_ecrf_create'%}>Electronic Case Report Update Form</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_cov2_create'%}>SARS-CoV-2 Reference Update Form </a></li></div>
+		{% elif user.get_username == 'bmathison' or user.get_username == 'user1' %}
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_flu_create'%}>InfA/InfB/RSV Reference Update Form</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_brpcr_create'%}>Site Investigational Update Form</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_ecrf_create'%}>Electronic Case Report Update Form</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_cov2_create'%}>SARS-CoV-2 Reference Update Form </a></li></div>
+		{% else %}
+			<li> NOT Authenticated! </li>
+		{% endif %}
+		<!--	<div class="grid-item"> <li><a href="{#% url 'ihab:metric' %#}">IH-500 Antibody ID Metrics</a></li></div>-->
+	
+</div>	
+
+{%endblock%}

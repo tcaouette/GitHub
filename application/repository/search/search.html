@@ -1,0 +1,14 @@
+
+
+{% block content %}
+
+{% if aliquots.count > 0 %}
+
+{% for aliquot in aliquots %}
+
+	<li> <a href="{{aliquots.object.get_absolute_url}}">{{aliquots.object.aqid}} </a> </li>
+{% endfor %}
+{% else %}
+<li> NOTHING </li>
+{% endif %}
+{% endblock %}

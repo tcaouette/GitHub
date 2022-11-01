@@ -1,0 +1,235 @@
+
+{% extends 'search/base.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+
+<script language="JavaScript" type="text/JavaScript">
+
+
+// document.getElementById("freezer").onsubmit=function() {freezer()};
+//	function freezer() {
+//		alert("SUBMIT WORKED");
+//		var x=document.getElementById("csvbutton").name ="freezer";
+//		alert("The Name of d is now"+x);
+//}
+//	function cage() {
+//		var x=document.getElementById("csvbutton").name ="cage";
+//}
+//	function cane() {
+//		var x=document.getElementById("csvbutton").name ="cane";
+//}
+//	function stack() {
+//		var x=document.getElementById("csvbutton").name ="stack";
+//}
+</script>
+<header>	
+
+
+
+	<h1>
+
+	Freezer Inventory 
+
+	</h1>
+
+	<form method="get" action ="{% url 'search:freezer' %}">
+		<input name="q" id="id_q" type="text" class="form-control" placeholder="Search...." value="{{query_string}}"/>
+		<input type="submit" value="Search">
+	
+	<!--	<button name="d" type="submit"> Download to CSV </button>-->
+	</form>
+
+	<!--<form method="get" action ="" >-->
+	<!--	<button name="d" type="submit" id="csvbutton"> Download to CSV </button>-->
+		<button onclick="exportTableToCSV('Freezer_inventory.csv')">Export Table to CSV </button>
+	<!--	</form>-->
+	</header>
+		
+			<!--	<form method="POST" action="{#% url 'aliquot_detail'  %#}">{#% csrf_token %#}
+				<div class="filters">
+				<div style="display:none"> Cage </div>
+				<label>Cage:</label>
+				<select name="cage" form="cage"class="filterby">
+				<select class="form-control">
+				<option value"--all--">Cage #</option> 
+				{#% for i in cage_filter %}
+				<option value='{{i.cage}}'>
+					{{i.cage}}</option>
+				
+				{% endfor %#}				
+				</select>
+				<form action "{#% url 'freezer'  %#}" method='get'id="cage" >
+				<input  type="submit" value="filter" />
+				</form>
+				<div style="display:none"> Cane</div>
+				<label>Cane:</label>
+			<select name="cane" form="cane"class="filterby">
+				<select class="form-control">
+				<option value="--all--">Cane #</option>
+				{#% for i in cane_filter %}
+				<option value='{{i.cane}}'>
+					{{i.cane}}</option>
+				
+				{% endfor %#}					
+				</select>			
+				<form action "{#% url 'freezer'  %#}" method='get'id="cane" >
+				<input  type="submit" value="filter" />
+				</form>
+
+
+				<div style="display:none">Stack</div>
+
+				<label>Stack:</label>
+				<select name="stack" form="stack"class="filterby">
+				<select class="form-control">
+				<option value="--all--">Stack</option>
+				{#% for i in stack_filter %}
+				<option value='{{i.stack}}'>
+					{{i.stack}}</option>
+				
+				{% endfor %#}				
+				</select>
+		-		<form action "{#% url 'freezer'  %#}" method='get'id="stack" >
+				<input  type="submit" value="filter" />
+				</form>
+				
+				<div style="display:none">Freezer </div>
+
+				<label>Freezer:</label>
+				<select name="freezer" form="freezer"class="filterby">
+				<select class="form-control">
+				<option value="--all--">Freezer ...</option>
+				{#% for i in freezer_filter %}
+				<option value='{{i.freezer}}'>
+					{{i.freezer}}</option>
+				
+				{% endfor %#}				
+				</select>
+		-		<form action "{#% url 'freezer'  %#}" method='get'id="freezer" >
+				<input type="submit" value="filter"/>
+				</form>
+				
+				
+			</div>-->
+<!--<table class='update'>-->
+<table id="table_format" class="table table-bordered" >
+	
+		
+	
+
+		<tr>
+
+
+		
+			<th> Box ID </th>	
+			<th> Cage  </th>
+			<th> Cane  </th>
+			<th> Stack </th>
+			<th> Freezer</th>
+	
+			<th> Inventory Number  </th>
+			<th> Insert Date  </th>
+	
+		
+			<th> Inventory Comments  </th>
+			
+
+		
+			
+		</tr>
+		
+		<tr class="nofilter">
+
+
+		
+			<th> Box ID </th>
+			<th> Cage  </th>
+			<th> Cane  </th>
+			<th> Stack </th>
+			<th> Freezer</th>
+	
+			<th> Inventory Number  </th>
+			<th> Insert Date  </th>
+	
+		
+			<th> Inventory Comments  </th>
+			
+
+		
+			
+		</tr>
+	
+
+
+		{% for a in freezer %}				
+				
+			<tr >
+		
+
+				 
+		
+				 
+					
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.boxid}}</a>{%else%} {{a.boxid}} {% endif %} </td>
+
+				<td ><strong> {{a.cage}}</strong>   </td>
+				<td ><strong> {{a.cane}}</strong>  </td>
+				<td ><strong> {{a.stack}}</strong>  </td>
+				<td ><strong> {{a.freezer}}</strong>  </td>
+				<td ><strong> {{a.invnum}}</strong>  </td>
+				<td ><strong> {{a.insertdate}}</strong>  </td>
+				<td ><strong> {{a.invcomments}}</strong> </td>
+			
+			</tr>
+		
+		{% endfor %}	
+
+			
+</table>
+
+
+
+<div id="page-content" class="well">
+
+
+		{% if freezer.has_other_pages %}
+			<ul class="pagination flex-sm-wrap">
+				{% if freezer.has_previous %}
+					<li> <a href="?page={{ freezer.previous_page_number }}">&laquo;</a></li>
+				{% else %}
+					<li class="disabled"><span>&laquo;</span><li>
+				{% endif %}
+
+
+				
+
+				{% for i in freezer.paginator.page_range %}
+					{% if freezer.number == i %}
+						<li class="active"><span> {{i}}<span class="sr-only">(current)</span></span></li>
+				
+					{% elif i > freezer.number|add:'-15' and i < freezer.number|add:'15' %}
+						<li><a href="?page={{i}}">{{i}}</a></li>
+					{% endif %}
+				{% endfor %}
+
+				{% if freezer.paginator.num_pages > freezer.number|add:'15' %}
+					<li> <a href="?page={{freezer.number|add:'15'}}">&hellip;</a></li>
+				{% endif %}
+
+				{% if freezer.has_next %}
+					<li><a href="?page={{freezer.next_page_number}}">&raquo;</a></li>
+					<li><a class="btn btn-outline-info mb-4" href="?page={{freezer.paginator.num_pages}}">Last Page:  {{freezer.paginator.num_pages}}</a></li>
+				{% else %}
+					<li class="disabled"><span>&raquo;</span></li>
+				{% endif %}
+			</ul>
+		{% endif %}
+</div>
+
+
+
+{% endblock %}

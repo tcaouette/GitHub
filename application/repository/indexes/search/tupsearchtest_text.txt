@@ -1,0 +1,6 @@
+
+{{object.aqid}}
+{{object.volume}}
+{{object.panelname}}
+{{object.samtypedesc}}
+{{object.gender}}

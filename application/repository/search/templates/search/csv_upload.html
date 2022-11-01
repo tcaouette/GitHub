@@ -1,0 +1,38 @@
+{% extends "search/base.html" %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/upload.css'%}">
+<header>
+{% if messages %}
+	{% for message in messages %}
+
+	<div>
+		<strong> {{message|safe }}</strong>
+	</div>
+	{% endfor %}
+	{% else %}
+	<p>.CSV upload </p>
+</header>
+
+<div align="center">
+	<p>'Header of CSV: freezer, cage, cane, stack, boxid, invnum, insertdate, invcomments, lotid, trialkey, studyid, studydesc, aqid, originalid, grid, labelinfo, volume, inserdate, invnum, invcomment, checkout, age, gender, demogroup, riskcategory, riskgroupdesc, bloodtype, hiv1, hiv2, hivo, hbs, hbc, hav, hcv, mmrv, influenza, sars_cov2, other, manufacturer, panelname, paneldesc, membernum, samtypedesc, samprepdesc, notes, dup, isconfirmed'</p>	
+	<p> All columns must contain data in .csv file </p>
+
+		<form method='post' enctype="multipart/form-data">{% csrf_token %}
+		<label for="file"> Upload a CSV File Please </label>
+		<input type="file" name="file">
+		<button type="submit">Upload</button>
+		</form>
+</div>
+
+{% endif %}
+
+
+
+
+
+
+
+{% endblock %}	

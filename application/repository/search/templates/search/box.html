@@ -1,0 +1,67 @@
+
+{% extends "search/base.html" %}
+	{% block content %}
+{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static "search/list.css" %}">
+	<header class="grid-header">
+	<h1> Box page! </h2>
+	</header>
+	<br>
+	<br>
+		<form method="GET">
+			<input type="search" class="form-control" name="search" placeholder ="Search...">
+		</form>
+	<ul>
+	<p> Box information</p>
+	
+	<table class="content-pattern">
+		<tr>
+			<th> Contents</th>
+			<th> BOX ID </th>
+		
+		</tr>
+		{% for b in boxinfo %}
+		{% if b.boxid %}
+		<tr>
+			<td> {{ b.contents }} </td>
+				<td> {{ b.boxid }} - <a href="{% url 'search:aliquot_detail' b.boxid %}">Asso. Aliquot</a> </td>
+
+			<!--<td> {#{ b.boxid }#}</td>-->
+		</tr>
+		{% endif %}
+		{% endfor %}
+	
+	</table>
+	<table class="grid-pattern">
+		<tr> 
+			<th>Box ID </th>
+
+			<th> Cane </th>
+			<th> Cage </th>
+			<th> Grid </th>
+			<th> Freezer </th>
+			<th> Stack </th>
+			<th> Inventory Number </th>
+			<th> Inventory Comments </th>
+	
+		</tr>
+			{% for b in box %}
+			{% if b.boxid %}
+			<tr>
+				<td> {{ b.boxid }} - <a href="{% url 'search:box_update' b.boxid %}">Update</a> </td>
+				<td> {{ b.cane }} </td>
+				<td> {{ b.cage }} </td>
+				<td> {{ b.freezer }} </td>
+				<td> {{ b.stack }} </td>
+				<td> {{ b.invnum }} </td>
+				<td> {{ b.invcomment }}</td>
+				
+			
+			
+			</tr>
+			{%endif %}
+			{% endfor %}
+			
+	</table>
+	{% endblock%}
+

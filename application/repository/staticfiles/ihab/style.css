@@ -1,0 +1,38 @@
+.sidebar-nav ul { 
+	margin-top: 20px;
+	padding-top:20px ;
+	list-style: none;
+	height:100%;
+	width:160px;
+	position:fixed;
+	z-index:1;
+		
+}
+ .sidebar-nav li, .sidebar-nav a{
+
+	margin-top: 10px;
+	padding-top:10px ;
+	list-style: none;
+	height:100%;
+	width:160px;
+
+
+
+}
+a{
+	color:#FF6600
+}
+
+.search-bar{
+	max-width:500px;
+	width:50%;
+}
+.footer{
+position:fixed;
+left:0;
+bottom:0;
+width:100%;
+background-color:#C0C0C0;
+color:#000000;
+text-align:center;
+}

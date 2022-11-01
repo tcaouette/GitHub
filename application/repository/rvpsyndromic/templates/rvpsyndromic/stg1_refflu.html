@@ -1,0 +1,86 @@
+
+{% extends "rvpsyndromic/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+
+<header>
+	<h1>InfA/InfB/RSV Reference Results</h1>
+	
+<div>
+</div>
+</header>
+
+<!--<table class='aliquot'>-->
+<table id="table_format" class="table table-bordered" >
+	<thead>
+		<tr>
+			<th> Sample </th>
+			<th>Operator </th>
+			<th> Kit Name </th>
+			<th> Kit Lot </th>
+			<th> Kit Exp </th>
+			<th> Test Date </th>
+			<th> Flu A Well </th>
+			<th> Flu A CQ Value </th>
+			<th> Flu A Interp </th>
+			<th> Flu B Well </th>
+			<th> Flu B CQ Value </th>
+			<th> Flu B Interp </th>
+			<th> RSV Well </th>
+			<th> RSV CQ Value </th>
+			<th> RSV Interp </th>
+			<th> Notes </th>
+			<th> Excluded? </th>
+		</tr>
+		<tr class="notformatted">
+			<th> Sample </th>
+			<th>Operator </th>
+			<th> Kit Name </th>
+			<th> Kit Lot </th>
+			<th> Kit Exp </th>
+			<th> Test Date </th>
+			<th> Flu A Well </th>
+			<th> Flu A CQ Value </th>
+			<th> Flu A Interp </th>
+			<th> Flu B Well </th>
+			<th> Flu B CQ Value </th>
+			<th> Flu B Interp </th>
+			<th> RSV Well </th>
+			<th> RSV CQ Value </th>
+			<th> RSV Interp </th>
+			<th> Notes </th>
+			<th> Excluded? </th>
+		</tr>
+		</thead>
+		<tbody>
+						
+			{% for r in refflu %}
+			<tr>
+				<td> {{r.sample}}</td>
+                                <td> {{r.reffluoperator}}</td> 
+    				<td> {{r.refflukitname}}</td> 
+    				<td> {{r.refflukitlot}}</td> 
+				<td>{{r.refflukitexp}}</td> 
+				<td>{{r.refflu_date}}</td> 
+    				<td>{{r.refflua_well}}</td> 
+    				<td>{{r.refflua_cqvalue}}</td>
+    				<td>{{r.refflua_interp}}</td>
+				<td>{{r.refflub_well}}</td> 
+    				<td>{{r.refflub_cqvalue}}</td> 
+    				<td>{{r.refflub_interp}}</td>
+				<td>{{r.refrsv_well}}</td> 
+    				<td>{{r.refrsv_cqvalue}}</td> 
+    				<td>{{r.refrsv_interp}}</td>
+    				<td>{{r.refnotes}}</td>
+    				<td>{{r.excl_flag}}</td> 
+
+
+			</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+
+{%endblock%}

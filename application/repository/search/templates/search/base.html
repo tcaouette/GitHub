@@ -1,0 +1,279 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% block title %} <title> Repository </title> {% endblock %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
+{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static "search/style.css" %}">
+	<script src="{% static "search/dropdown.js" %}"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	
+</head>
+<style>
+.col-sm-1{
+border-radius:10px;
+max-height:100px;
+}
+#location {
+border-radius:10px
+min-width:150px;
+min-height:35px;
+margin:10px 10px 10px 10px;
+}
+</style>
+<body style="background-color:#f2f2f2">
+	<div class="topnav">
+				<img src="{% static "search/logo.png" %}" alt= "Bio Rad">
+			<a class ="active" href="{% url 'index' %}">Home </a>
+	<!--		<a href="{#% url 'search_freezer_b' %#}">Freezer B </a>-->
+			<a href="{% url 'search:meta_table' %}">Contents Lookup </a>	
+	<!--		<a href="{#% url 'search:freezer' %#}">Freezer Inventory </a> -->
+			<div class="dropdown">
+				<button onclick="dropdown()" class="dropbtn">Location </button>
+				<div class="dropdown-content" id="myDropdown">
+					<a href="{% url 'search:add_location' %}" target="_blank">Add a New Location </a>	
+					<a href="{% url 'search:locations' %}" target="_blank"> Locations List </a>	
+				</div>
+			</div>
+			<a href="{% url 'search:aliquot_add' %}" target="_blank">Add an Aliquot </a>	
+			<a href="{% url 'search:coa' %}" target="_blank">CoA Test Page </a>	
+	<!--		<a href="{#% url 'aliquot' %#}">Aliquot Info</a>	-->
+	<!--	        <a href="{#% url 'search:aliquot_table' %#}">Aliquot Table </a>	-->
+			<a href="{% url 'search:shipping_return' %}" target="_blank">Shipping Returns </a>	
+				
+				
+	<!--		<a href="{#% url 'search:aliquot_search' %#}">Aliquot Search Form </a>	-->
+			<a href="{% url 'search:big_table' %}">Aliquot Search Form </a>	
+			
+	<!--		<a href="{#% url 'box' %#}">Box Info </a>	-->
+			<a href="{% url 'search:box_add' %}">Add a Box </a>
+	
+			
+			<a href="{% url 'search:csv_upload' %}">Upload CSV? </a>	
+			
+			<a href="{% url 'search:help' %}" target="_blank">Help!? </a>	
+		
+
+	</div>
+		
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-1">
+			{% block sidebar %}
+			<ul class="sidebar-nav" >
+				
+			{% if user.is_authenticated %}
+				<li>USER: {{ user.get_username }}</li>
+				<li> <a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+			
+
+			{% endif %}				
+			
+					
+			</ul>
+			{% endblock %}
+			</div>
+		<div class="col-sm-11">
+			{% block content %}
+
+
+		
+
+			{% endblock %}
+		</div>
+		</div>
+		<script type="text/JavaScript">
+		//	document.write(new Date().getFullYear());
+
+			function downloadCSV(csv, filename){
+
+				var csvFile;
+				var downloadLink;
+				csvFile = new Blob([csv],{type: "text/csv"});
+
+				downloadLink = document.createElement("a");
+
+				downloadLink.download = filename;
+
+				downloadLink.href = window.URL.createObjectURL(csvFile);
+
+				downloadLink.style.display = "none";
+
+				document.body.appendChild(downloadLink);
+				downloadLink.click();
+			}
+
+			function exportTableToCSV(filename){
+
+				var csv=[];
+				var rows = document.querySelectorAll("table tr");
+
+				for(var i = 1; i < rows.length; i++){
+					if (rows[i].style.display==="none") continue;
+
+					var row = [], cols = rows[i].querySelectorAll("td, th");
+						
+					for (var j = 0; j < cols.length; j++)
+										
+							row.push(cols[j].innerText.replace(/,/gi,":"));
+									
+					csv.push(row.join(","));
+				
+				
+					
+				}
+				downloadCSV(csv.join("\n"), filename);
+			
+			
+			}
+			
+	
+(function($){
+$.fn.ddTableFilter = function(options) {
+  options = $.extend(true, $.fn.ddTableFilter.defaultOptions, options);
+
+  return this.each(function() {
+    if($(this).hasClass('ddtf-processed')) {
+      refreshFilters(this);
+      return;
+    }
+    var table = $(this);
+    var start = new Date();
+
+    $('th:visible', table).each(function(index) {
+      if($(this).hasClass('skip-filter')) return;
+      var selectbox = $('<select class="form-control">');
+      var values = [];
+      var opts = [];
+      selectbox.append('<option value="--all--">' + $(this).text() + '</option>');
+
+      var col = $('tr:not(.skip-filter) td:nth-child(' + (index + 1) + ')', table).each(function() {
+        var cellVal = options.valueCallback.apply(this);
+        if(cellVal.length == 0) {
+          cellVal = '--empty--';
+        }
+        $(this).attr('ddtf-value', cellVal);
+
+        if($.inArray(cellVal, values) === -1) {
+          var cellText = options.textCallback.apply(this);
+          if(cellText.length == 0) {cellText = options.emptyText;}
+          values.push(cellVal);
+          opts.push({val:cellVal, text:cellText});
+        }
+      });
+      if(opts.length < options.minOptions){
+        return;
+      }
+      if(options.sortOpt) {
+        opts.sort(options.sortOptCallback);
+      }
+      $.each(opts, function() {
+        $(selectbox).append('<option value="' + this.val + '">' + this.text + '</option>')
+      });
+
+      $(this).wrapInner('<div style="display:none">');
+      $(this).append(selectbox);
+
+      selectbox.bind('change', {column:col}, function(event) {
+        var changeStart = new Date();
+        var value = $(this).val();
+
+
+        event.data.column.each(function() {
+          if($(this).attr('ddtf-value') === value || value == '--all--') {
+            $(this).removeClass('ddtf-filtered');
+          }
+          else {
+            $(this).addClass('ddtf-filtered');
+          }
+        });
+        var changeStop = new Date();
+        if(options.debug) {
+          console.log('Search: ' + (changeStop.getTime() - changeStart.getTime()) + 'ms');
+        }
+        refreshFilters(table);
+
+      });
+      table.addClass('ddtf-processed');
+      if($.isFunction(options.afterBuild)) {
+        options.afterBuild.apply(table);
+      }
+    });
+
+    function refreshFilters(table) {
+      var refreshStart = new Date();
+      $('tr', table).each(function() {
+        var row = $(this);
+        if($('td.ddtf-filtered', row).length > 0) {
+          options.transition.hide.apply(row, options.transition.options);
+        }
+        else {
+          options.transition.show.apply(row, options.transition.options);
+        }
+      });
+
+      if($.isFunction(options.afterFilter)) {
+        options.afterFilter.apply(table);
+      }
+
+      if(options.debug) {
+        var refreshEnd = new Date();
+        console.log('Refresh: ' + (refreshEnd.getTime() - refreshStart.getTime()) + 'ms');
+      }
+    }
+
+    if(options.debug) {
+      var stop = new Date();
+      console.log('Build: ' + (stop.getTime() - start.getTime()) + 'ms');
+    }
+  });
+};
+
+
+$.fn.ddTableFilter.defaultOptions = {
+  valueCallback:function() {
+    return encodeURIComponent($.trim($(this).text()));
+  },
+  textCallback:function() {
+    return $.trim($(this).text());
+  },
+  sortOptCallback: function(a, b) {
+    return a.text.toLowerCase() > b.text.toLowerCase();
+  },
+  afterFilter: null,
+  afterBuild: null,
+  transition: {
+    hide:$.fn.hide,
+    show:$.fn.show,
+    options: []
+  },
+  emptyText:'--Empty--',
+  sortOpt:true,
+  debug:false,
+  minOptions:1
+}
+
+})(jQuery);
+
+
+(function($) {
+		$(function(){
+			$('#table_format').ddTableFilter();
+		});
+})(jQuery)
+
+
+
+	
+		</script> 
+						 
+			
+		
+		</div>
+		</body>
+	</html>

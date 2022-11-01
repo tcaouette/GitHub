@@ -1,0 +1,55 @@
+
+{% extends "ihab/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'ihab/table.css' %}">
+<header>
+	
+	<h1> IH-500 Antibody ID Home </h1>
+	<p> Welcome to the IH-500 Antibody ID App!</p>
+
+	
+
+
+</header>
+<style>
+
+</style>	
+<body>
+
+		{% if messages %}
+			<div class='alert alert-success'>
+			{% for message in messages %}
+				{{message}}
+			{%endfor%}
+			</div>
+		{%endif%}
+
+
+</body>	
+<div class="grid-container">
+		{% if  user.get_username == 'datamgt' or user.get_username == 'dk_admin' or user.get_username == 'lsutton' %}
+			<div class="grid-item"> <li><a href="{% url 'ihab:bcw_primary' %}"> BCW primary entry form</a></li> </div>
+			<div class="grid-item">	<li><a href="{% url 'ihab:bld_secondary' %}"> BLD secondary entry form</a></li></div>
+			<div class="grid-item"> <li><a href="{% url 'ihab:bld_primary' %}"> BLD primary entry form</a>	</li></div>
+			<div class="grid-item"> <li><a href="{% url 'ihab:bcw_secondary' %}"> BCW secondary entry form</a>	</li></div>
+		{% elif user.get_username == 'Kjacobs' or user.get_username == 'user1' %}
+			<div class="grid-item"> <li><a href="{% url 'ihab:bld_primary' %}"> BLD primary entry form</a>	</li></div>
+			<div class="grid-item"> <li><a href="{% url 'ihab:bcw_secondary' %}"> BCW secondary entry form</a>	</li></div>
+		{% elif user.get_username == 'bmathison' or user.get_username == 'user2' %}
+			<div class="grid-item"> <li><a href="{% url 'ihab:bcw_primary' %}"> BCW primary entry form</a></li> </div>		
+			<div class="grid-item"> <li><a href="{% url 'ihab:bld_secondary' %}"> BLD secondary entry form</a></li></div>
+		{% else %}
+			<li> NOT Authenticated! </li>
+		{% endif %}
+			<div class="grid-item"> <li><a href="{% url 'ihab:metric' %}">IH-500 Antibody ID Metrics</a></li></div>
+	
+</div>	
+		
+
+
+
+	
+
+{% endblock %}

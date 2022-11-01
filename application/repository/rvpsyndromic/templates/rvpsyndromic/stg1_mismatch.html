@@ -1,0 +1,136 @@
+
+{% extends "rvpsyndromic/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+
+<header>
+<h1>InfA/InfB/RSV Reference Mismatch View  </h1>
+<div>
+</div>
+</header>
+
+<!--<table class='aliquot'>-->
+<table id="table_format" class="table table-bordered" >
+	<thead>
+		<tr>
+		<th>DEP1 Sample</th>
+		<th>DEP1 Operator</th>
+		<th>DEP1 Flu Kit Name</th>
+		<th>DEP1 Flu Kit Lot</th>
+		<th>DEP1 Flu Kit Exp</th>
+		<th>DEP1 Flu Date</th>
+		<th>DEP1 Flu A Well</th>
+		<th>DEP1 Flu A CQ Value</th>
+		<th>DEP1 Flu A Interp</th>
+		<th>DEP1 Flu B Well</th>
+		<th>DEP1 Flu B CQ Value</th>
+		<th>DEP1 Flu B Interp</th>
+		<th>DEP1 RSV Well</th>
+		<th>DEP1 RSV CQ Value</th>
+		<th>DEP1 RSV Interp</th>
+		<th>DEP1 Reference Notes</th>
+		<th>DEP1 Excluded?</th>
+		<th>DEP2 Sample</th>
+		<th>DEP2 Operator</th>
+		<th>DEP2 Flu Kit Name</th>
+		<th>DEP2 Flu Kit Lot</th>
+		<th>DEP2 Flu Kit Exp</th>
+		<th>DEP2 Flu Date</th>
+		<th>DEP2 Flu A Well</th>
+		<th>DEP2 Flu A CQ Value</th>
+		<th>DEP2 Flu A Interp</th>
+		<th>DEP2 Flu B Well</th>
+		<th>DEP2 Flu B CQ Value</th>
+		<th>DEP2 Flu B Interp</th>
+		<th>DEP2 RSV Well</th>
+		<th>DEP2 RSV CQ Value</th>
+		<th>DEP2 RSV Interp</th>
+		<th>DEP2 Reference Notes</th>
+		<th>DEP2 Excluded?</th>
+		</tr>
+		<tr class="notformatted">
+		<th>DEP1 Sample</th>
+		<th>DEP1 Operator</th>
+		<th>DEP1 Flu Kit Name</th>
+		<th>DEP1 Flu Kit Lot</th>
+		<th>DEP1 Flu Kit Exp</th>
+		<th>DEP1 Flu Date</th>
+		<th>DEP1 Flu A Well</th>
+		<th>DEP1 Flu A CQ Value</th>
+		<th>DEP1 Flu A Interp</th>
+		<th>DEP1 Flu B Well</th>
+		<th>DEP1 Flu B CQ Value</th>
+		<th>DEP1 Flu B Interp</th>
+		<th>DEP1 RSV Well</th>
+		<th>DEP1 RSV CQ Value</th>
+		<th>DEP1 RSV Interp</th>
+		<th>DEP1 Reference Notes</th>
+		<th>DEP1 Excluded?</th>
+		<th>DEP2 Sample</th>
+		<th>DEP2 Operator</th>
+		<th>DEP2 Flu Kit Name</th>
+		<th>DEP2 Flu Kit Lot</th>
+		<th>DEP2 Flu Kit Exp</th>
+		<th>DEP2 Flu Date</th>
+		<th>DEP2 Flu A Well</th>
+		<th>DEP2 Flu A CQ Value</th>
+		<th>DEP2 Flu A Interp</th>
+		<th>DEP2 Flu B Well</th>
+		<th>DEP2 Flu B CQ Value</th>
+		<th>DEP2 Flu B Interp</th>
+		<th>DEP2 RSV Well</th>
+		<th>DEP2 RSV CQ Value</th>
+		<th>DEP2 RSV Interp</th>
+		<th>DEP2 Reference Notes</th>
+		<th>DEP2 Excluded?</th>
+		</tr>
+		</thead>
+		<tbody>
+						
+			{% for m in match %}
+			<tr>
+   <td> {{m.dep1_sample}}</td> 
+   <td> {{m.dep1_reffluoperator}} </td>
+   <td> {{m.dep1_refflukitname}} </td>
+    <td>{{m.dep1_refflukitlot}} </td>
+    <td>{{m.dep1_refflukitexp}} </td>
+    <td>{{m.dep1_refflu_date}} </td>
+   <td> {{m.dep1_refflua_well}} </td>
+    <td>{{m.dep1_refflua_cqvalue}} </td>
+   <td> {{m.dep1_refflua_interp}} </td>
+   <td> {{m.dep1_refflub_well}}</td>
+    <td>{{m.dep1_refflub_cqvalue}} </td>
+    <td>{{m.dep1_refflub_interp}} </td>
+    <td>{{m.dep1_refrsv_well}} </td>
+    <td>{{m.dep1_refrsv_cqvalue}} </td>
+    <td>{{m.dep1_refrsv_interp}} </td>
+   <td> {{m.dep1_refnotes}} </td>
+   <td> {{m.dep1_excl_flag}} </td>
+    <td>{{m.dep2_sample}} </td>
+    <td>{{m.dep2_reffluoperator}} </td>
+    <td>{{m.dep2_refflukitname}} </td>
+    <td>{{m.dep2_refflukitlot}} </td>
+   <td> {{m.dep2_refflukitexp}} </td>
+    <td>{{m.dep2_refflu_date}} </td>
+    <td>{{m.dep2_refflua_well}} </td>
+   <td> {{m.dep2_refflua_cqvalue}} </td>
+   <td> {{m.dep2_refflua_interp}} </td>
+    <td>{{m.dep2_refflub_well}} </td>
+    <td>{{m.dep2_refflub_cqvalue}} </td>
+    <td>{{m.dep2_refflub_interp}} </td>
+ <td>   {{m.dep2_refrsv_well}} </td>
+    <td>{{m.dep2_refrsv_cqvalue}} </td>
+    <td>{{m.dep2_refrsv_interp}} </td>
+    <td>{{m.dep2_refnotes}} </td>
+    <td>{{m.dep2_excl_flag}} </td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		<tfoot class="foot">
+		</tfoot>
+		</table>
+
+{%endblock%}

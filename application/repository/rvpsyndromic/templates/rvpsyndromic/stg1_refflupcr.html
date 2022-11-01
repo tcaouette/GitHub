@@ -1,0 +1,61 @@
+
+{% extends "rvpsyndromic/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+
+<header>
+	<h1>
+	</h1>
+<div>
+</div>
+</header>
+
+<!--<table class='aliquot'>-->
+<table id="table_format" class="table table-bordered" >
+	<thead>
+		<tr>
+			<th> Insert Date </th>
+		</tr>
+		<tr class="notformatted">
+			<th> Insert Date </th>
+		</tr>
+		</thead>
+		<tbody>
+						
+			{% for r in refflupcr %}
+			<tr>
+				<td> {{r.refflupcrrow_1}}</td>
+                                <td> {{r.refflupcrrow_2}}</td> 
+    				<td> {{r.reffile_name}}</td> 
+    				<td> {{r.refrun_date}}</td> 
+				<td>{{r.sample}}<td> 
+				<td>{{r.refflua_well}}</td> 
+    				<td>{{r.refflua_cqvalue}}</td> 
+    				<td>{{r.refflua_interp}}</td>
+				<td>{{r.refflub_well}}</td> 
+    				<td>{{r.refflub_cqvalue}}</td> 
+    				<td>{{r.refflub_interp}}</td>
+    				<td>{{r.refnotes}}</td>
+    				<td>{{r.refflupcrexcld}}</td> 
+				<td><form method="POST" action="{% url 'rvpsyndromic:stg1_refflupcr' %}">{% csrf_token %}
+																<input type="checkbox" value="{{r.refflupcrrow_1}}" name="for_action" id="for_action"></td>
+
+
+			</tr>
+			{% endfor %}
+		</tbody>
+		<tfoot class="foot">
+			<tr class="foot">
+				
+				<td colspan="1"> <button class="floater" name="update" type="submit" >Exclude</button></td>
+				</form>
+			<td colspan="10"></td>	
+				<td colspan="1"></td>
+			</tr>
+		</tfoot>
+		</table>
+
+{%endblock%}

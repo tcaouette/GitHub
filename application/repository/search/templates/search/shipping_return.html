@@ -1,0 +1,121 @@
+
+{% extends 'search/base.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+<script src="{% static 'search/required.js' %}" ></script>
+
+		{% if messages %}
+			<div class='alert alert-success'>
+			{% for message in messages %}
+				{{message}}
+			{%endfor%}
+			</div>
+		{%endif%}
+<header>	
+
+
+
+	<h1>
+
+	Shipping Returns	
+
+	</h1>
+<div class="grid-container">
+	<div class="grid-item">
+	<form method="POST" >{% csrf_token %}
+
+	<label for="location">Shipping Location</label><select name="location" id="location" required>
+						<option value="">Select Site... </option>
+						{% for loc in locations %}
+							<option value="{{loc.siteabbr}}">{{loc.siteabbr}}</option>
+						{% endfor %}
+						</select>
+<!--<input name="location" id="location" type="text" required>-->
+		
+	
+		<button type="submit" name="ship_location" value="submit"> Look up </button>	
+	</form>
+	</div>
+	<div class="grid-item">
+	<form method="get" action ="" >
+	<!--	<button name="d" type="submit"> Download to CSV </button>-->
+		<button onclick="exportTableToCSV('aliquot_detail.csv')">Export Table to CSV </button>
+	</form>
+	</div>
+
+</div>
+	</header>
+<table id="table_format" class="table table-bordered" >
+	
+	<form method="POST" action="{% url 'search:shipping_return' %}">{% csrf_token %}
+	
+	<thead>
+
+		
+		<tr class="notformatted">
+			<th> Select Aliquots for Return </th>
+			<th> AQID   </th>
+			
+			<th> Volume (mL) </th>
+			<th>Already Shipped?</th>
+			<th> Shipped Location </th>
+			<th >Volume Returned (mL)</th>
+
+			<th >Date Returned</th>
+			<th >Box ID In</th>
+			<th >Condition</th>
+			<th>Freeze and Thaw Counts </th>
+
+
+			
+			
+		</tr>
+		</thead>
+		<tbody>
+
+		{% for a in aliquot %}				
+		{% if a.checkout != -2 %}		
+			<tr>
+				<td>{% if a.checkout == 2 %}<input type="checkbox" onchange="checkRequired()" value="{{a.aqid}}" name="for_action" id="{{a.aqid}}" >{% else %} {% endif %}</td> 
+		
+				<td><strong> {{a.aqid }}</strong></td>
+				<td><strong> {{a.volume}}</strong>  </td>
+				<td>{% if a.checkout == 2  %}<strong> Yes </strong> {% else  %} <strong>No  </strong>{% endif %} </td>
+				<td>	<label for="ship_location">Shipped Location</label><input type="text" id="s_{{a.aqid}}" name="s_{{a.aqid}}" value="{{a.ship_location}}"></td> 
+				<td>	<label for="volume">Volume</label><input type="text" id="v_{{a.aqid}}" name="v_{{a.aqid}}"></td> 
+				<td>	<label for="datetime">Date</label><input type="datetime-local" id="d_{{a.aqid}}" name="d_{{a.aqid}}"></td> 
+	<!--			<td>	<label for="boxid_out">Box ID</label><input type="text" id="b_{#{a.aqid}}"name="b_{#{a.aqid}#}"></td> -->
+	<td>	<label for="boxids">Box ID  </label><select name="b_{{a.aqid}}" id="b_{{a.aqid}}" >
+						<option value="">Box ID's... </option>
+						{% for b in box %}
+							<option value="{{b.boxid}}">{{b.boxid}}</option>
+						{% endfor %}
+						</select></td>
+				<td>	<label for="condition">Condition</label><input type="text" id="c_{{a.aqid}}" name="c_{{a.aqid}}"></td> 
+				<td>	<label for="freeze_thaw"># of Freeze/Thaws</label><input type="text" id="f_{{a.aqid}}" name="f_{{a.aqid}}"></td> 
+		
+			</tr>
+		{% endif %}
+		{% endfor %}	
+		</tbody>
+		<tfoot class="foot">
+			<tr class="foot">
+		
+				<td colspan="1"> <button class="floater" name="update" type="submit" >Return</button></td>
+				</form>
+				
+				<td colspan="11"> </td>	
+			
+					
+				
+		
+			</tr>
+		</tfoot>
+
+</table>
+
+{%endblock%}
+

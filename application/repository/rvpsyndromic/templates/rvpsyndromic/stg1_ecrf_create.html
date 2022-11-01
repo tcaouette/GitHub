@@ -1,0 +1,129 @@
+
+{% extends "rvpsyndromic/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1> Electronic Case Report Data Update Form </h1>
+<br>
+<br>
+
+<form action='.' method="POST">
+{% csrf_token%}
+{#{ form|crispy }#}
+<div class="form-row">
+<!--	<div class="form-group col-md-3 mb-0">
+		{#{form.dep|as_crispy_field}#}
+	</div>-->
+	<div class="form-group col-md-2 mb-0">
+		{{form.subjectid|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.specimenid|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.subject_age|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.subject_sex|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.subject_race|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.subject_ethnicity|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.collection_date|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.symptom_date|as_crispy_field}}
+	</div>
+</div>
+<br>
+
+<div class="form-row">
+	<div class="form-group col-md-2 mb-0">
+		{{form.symptom_cough|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.symptom_conges|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.symptom_rhinorrhea|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.symptom_sore_throat|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.symptom_fever|as_crispy_field}}
+	</div>
+
+
+</div>
+</br>
+<div class="form-row">
+	<div class="form-group col-md-4 mb-0">
+		{{form.symptom_headache|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.symptom_myalgia|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.symptom_hospitalized|as_crispy_field}}
+	</div>
+</div>
+<div class="form-row">
+	<div class="form-group col-md-6 mb-0">
+		{{form.symptom_desc|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-6 mb-0">
+		{{form.symptom_other|as_crispy_field}}
+	</div>
+</div>
+<div class="form-row">
+	<div class="form-group col-md-3 mb-0">
+		{{form.influzab_kitname|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.influza_testresult|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.influzb_testresult|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.influza_ctvalue|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.influzb_ctvalue|as_crispy_field}}
+	</div>
+</div>
+<div class="form-row">
+	<div class="form-group col-md-2 mb-0">
+		{{form.rsv_kitname|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.rsv_testvalue|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.rsv_ctvalues|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.cov2_kitname|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.cov2_testresult|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.cov2_ctvalue|as_crispy_field}}
+	</div>
+</div>
+<div class="form-row">
+	<div class="form-group col-md-8 mb-0">
+		{{form.excl_flag|as_crispy_field}}
+	</div>
+
+</div>
+</br>
+<input type="submit" class="btn btn-block" value="Submit">
+</form>
+</br>
+{% endblock %}

@@ -1,0 +1,23 @@
+
+{% extends 'search/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/form.css' %}">
+<header>
+<h1>  Update a Box pg. 1</h1>
+
+<h2> The current box selected is {{ object }} </h2>
+
+
+</header>
+<table>
+<form action="" method="POST">
+{% csrf_token%}
+
+{{ form|crispy }}
+
+<input type="submit" class="btn btn-block" value="Submit">
+</form>
+</table>
+{% endblock %}

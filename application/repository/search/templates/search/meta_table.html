@@ -1,0 +1,123 @@
+
+{% extends "search/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+		{% if messages %}
+			<div class='alert alert-success'>
+			{% for message in messages %}
+				{{message}}
+			{%endfor%}
+			</div>
+		{%endif%}
+
+<header>
+	<h1>
+		Contents Lookup
+	</h1>
+
+	<form method="get" action ="{% url 'search:meta_table' %}">
+		<input name="q" id="id_q" type="text" class="form-control" placeholder="Search...." value="{{query_string}}"/>
+		<input type="submit" value="Search">
+		<button onclick="exportTableToCSV('meta_inventory.csv')">Export Table to CSV </button>
+<!--		<button name="d" type="submit"> Download to CSV </button>-->
+	</form>
+	<form>
+		<input name="q" id="id_x" type="hidden" class="form-control" value="{{query_string}}"/>
+	</form>
+	<form>
+		<input name="all" type="submit" value="View All Contents">
+	</form>
+</header>
+<!--<table class='content'>-->
+<table id="table_format" class="table table-bordered" >
+	<thead>
+		<tr>
+			<th> Box Type </th>
+			<th> Box ID </th>
+			<th> <strong>Contents</strong> </th>
+			<th> Insert Date </th>
+			<th> Inventory Status </th>
+			<th>Freezer</th>
+			
+			
+		</tr>
+		<tr class="noformatting">
+			<th> Box Type </th>
+			<th> Box ID </th>
+			<th> <strong>Contents</strong> </th>
+			<th> Insert Date </th>
+			<th> Inventory Status </th>
+			<th>Freezer</th>
+			
+			
+		</tr>
+		</thead>
+		<tbody>
+			
+			{% for a in found_entries %}
+			
+			      	<tr>
+
+
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.boxtype}}</a>{%else%} {{a.boxtype}} {% endif %} </td>
+				
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.boxid}}</a>{%else %}No Box ID {% endif %} </td>
+			
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.contents}}</a>{%else %}{{a.contents}} {% endif %} </td>
+				
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.insertdate}}</a>{%else %}{{a.insertdate}} {% endif %} </td>
+
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.invstatus}}</a>{%else%}{{a.invstatus}} {% endif %} </td>
+				
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.boxid.freezer}}</a>{%else %}No Box ID {% endif %} </td>
+				
+				
+			</tr>
+				
+
+			{% endfor %}
+		</tbody>
+		</table>
+<div id="page-content" class="well">
+
+
+		{% if found_entries.has_other_pages %}
+			<ul class="pagination flex-sm-wrap">
+				{% if found_entries.has_previous %}
+					<li> <a href="?page={{ found_entries.previous_page_number }}">&laquo;</a></li>
+				{% else %}
+					<li class="disabled"><span>&laquo;</span><li>
+				{% endif %}
+
+
+				
+
+				{% for i in found_entries.paginator.page_range %}
+					{% if found_entries.number == i %}
+						<li class="active"><span> {{i}}<span class="sr-only">(current)</span></span></li>
+					{#% else %#}
+					{% elif i > found_entries.number|add:'-15' and i < found_entries.number|add:'15' %}
+						<li><a href="?page={{i}}">{{i}}</a></li>
+					{% endif %}
+				{% endfor %}
+
+				{% if found_entries.paginator.num_pages > found_entries.number|add:'15' %}
+					<li> <a href="?page={{found_entries.number|add:'15'}}">&hellip;</a></li>
+				{% endif %}
+
+				{% if found_entries.has_next %}
+					<li><a href="?page={{found_entries.next_page_number}}">&raquo;</a></li>
+					<li><a class="btn btn-outline-info mb-4" href="?page={{found_entries.paginator.num_pages}}">Last Page:  {{found_entries.paginator.num_pages}}</a></li>
+				{% else %}
+					<li class="disabled"><span>&raquo;</span></li>
+				{% endif %}
+			</ul>
+		{% endif %}
+</div>
+
+
+	{% endblock %}

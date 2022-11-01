@@ -1,0 +1,34 @@
+
+
+{% extends "search/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/form.css' %}">
+
+		{% if messages %}
+			<div class='alert alert-success'>
+			{% for message in messages %}
+				{{message}}
+			{%endfor%}
+			</div>
+		{%endif%}
+<header>
+<h1> Add a Box pg. 2  </h1>
+<p> Add the appropriate information in the fields below </p>
+</header>
+
+
+
+<form action='.' method="POST">
+{% csrf_token%}
+{{ form|crispy }}
+		
+
+
+<input type="submit" class="btn btn-block" value="Submit">
+</form>
+<br>
+<br>
+<br>
+{% endblock %}

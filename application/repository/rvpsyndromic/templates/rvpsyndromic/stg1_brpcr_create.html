@@ -1,0 +1,96 @@
+{% extends "rvpsyndromic/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+		{% if messages %}
+			<div class='alert alert-success'>
+			{% for message in messages %}
+				{{message}}
+			{%endfor%}
+			</div>
+		{%endif%}
+<h1> Site Investigational Data Update Form</h1>
+<br>
+<br>
+
+<form action='.' method="POST">
+{% csrf_token%}
+{#{ form|crispy }#}
+<div class="form-row">
+	<div class="form-group col-md-2 mb-0">
+		{{form.sampleid|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.inv_site|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.inv_operator|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.inv_kit_name|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.inv_kit_lotid|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.inv_kit_expiration_date|as_crispy_field}}
+	</div>
+</div>
+<br>
+<div class="form-row">
+	<div class="form-group col-md-4 mb-0">
+		{{form.inv_equipment|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.inv_test_name|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.inv_test_date|as_crispy_field}}
+	</div>
+</div>
+
+<div class="form-row">
+	<div class="form-group col-md-2 mb-0">
+		{{form.inv_well_id|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.inv_sarscov2_concentration|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-2 mb-0">
+		{{form.inv_infa_concentration|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.inv_infb_concentration|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.inv_rp_concentration|as_crispy_field}}
+	</div>
+</div>
+<div class="form-row">
+	<div class="form-group col-md-3 mb-0">
+		{{form.inv_sarscov2_interpretation|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.inv_infa_interpretation|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.inv_infb_interpretation|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.inv_rp_interpretation|as_crispy_field}}
+	</div>
+</div>
+<div class="form-row">
+	<div class="form-group col-md-6 mb-0">
+		{{form.inv_notes|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-6 mb-0">
+		{{form.excl_flag|as_crispy_field}}
+	</div>
+
+
+</div>
+</br>
+</br>
+<input type="submit" class="btn btn-block" value="Submit">
+</form>
+{% endblock %}

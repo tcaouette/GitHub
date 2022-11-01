@@ -1,0 +1,3 @@
+{{object.aqid}}
+{{object.samtypedesc}}
+{{object.gender}}

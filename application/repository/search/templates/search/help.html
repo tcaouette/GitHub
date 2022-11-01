@@ -1,0 +1,48 @@
+
+{% extends "search/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'cdm_home/table.css' %}">
+<header>
+	<h1>US Clinical Data Management Home </h1>
+	<p> Welcome to the US Clinical Data Management App!</p>
+	
+
+	
+
+
+</header>
+<style>
+
+</style>	
+<body>
+
+
+
+</body>	
+<div class="grid-container">
+
+	
+<!--	<div class="grid-item">  		<a href="{#% url 'ihab:index_home' %#}"> ABID Clinical Study App</a></div>-->
+
+	<div class="grid-item">Update an Aliquot<iframe  src="{% static "search/Aliquot_Update.pdf" %}" width="100%" height="500px"></iframe>		</div>
+	<div class="grid-item">Add an Aliquot<iframe  src="{% static "search/Aliquot_Add.pdf" %}" width="100%" height="500px"></iframe>		</div>
+	<div class="grid-item">Add a Location<iframe  src="{% static "search/Aliquot_Location_Add.pdf" %}" width="100%" height="500px"></iframe>		</div>
+	<div class="grid-item">Dispose an Aliquot<iframe  src="{% static "search/Aliquot_Dispose.pdf" %}" width="100%" height="500px"></iframe>		</div>
+	<div class="grid-item"> Ship an Aliquot<iframe  src="{% static "search/Aliquot_Shipping.pdf" %}" width="100%" height="500px"></iframe>		</div>
+	<div class="grid-item">Return a Shipped Aliquot<iframe  src="{% static "search/Aliquot_Shipping_Returns.pdf" %}" width="100%" height="500px"></iframe>		</div>
+	<div class="grid-item">Freezer Contents Meta Info<iframe  src="{% static "search/Aliquot_Contents.pdf" %}" width="100%" height="500px"></iframe>		</div>
+	<div class="grid-item">Add a Box<iframe  src="{% static "search/Aliquot_Box_Add.pdf" %}" width="100%" height="500px"></iframe>		</div>
+	<div class="grid-item">Search for Aliquots (Search Form)<iframe  src="{% static "search/Aliquot_search_form_v2.pdf" %}" width="100%" height="500px"></iframe>		</div>
+<!--	<div class="grid-item">Clinical Repository Web App How To<iframe  src="{#% static "search/Orientation_Clinical_Repository_Web_Application_v3.pdf" %#}" width="100%" height="500px"></iframe>		</div>-->
+
+
+</div>	
+		
+
+{% endblock %}
+
+
+	
+

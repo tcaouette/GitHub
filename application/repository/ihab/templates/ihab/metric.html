@@ -1,0 +1,24 @@
+
+{% extends "ihab/base.html" %}
+
+<link href="http://cdn.pydata.org/bokeh/release/bokeh-2.0.1.min.css" rel="stylesheet" type="text/css">
+<link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.1.min.css" rel="stylesheet" type="text/css">
+<link href="http://cdn.pydata.org/bokeh/release/bokeh-tables-2.0.1.min.css" rel="stylesheet" type="text/css">
+{% block content %}
+<h1> CURRENTLY UNDER DEVELOPMENT</h1>
+<p> The current charts and metrics are currently under development</p>
+<p>Do NOT use for decision making. Do NOT disseminate or distribute </p>
+
+{{script|safe}}
+<table>
+	<h1> Metrics </h1>
+
+<td>{{div | safe}}</td>
+
+<script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-2.0.1.min.js"></script>
+<script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.1.min.js></script>
+<script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-tables-2.0.1.min.js></script>
+<script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-ap1-2.0.1.min.js></script>
+<td>{{script|safe}}</td>
+</table>
+{% endblock %}

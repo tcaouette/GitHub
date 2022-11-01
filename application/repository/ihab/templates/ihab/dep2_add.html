@@ -1,0 +1,151 @@
+
+{% extends "ihab/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>  Secondary Data Entry </h1>
+<br>
+<br>
+
+<form action='.' method="POST">
+{% csrf_token%}
+{#{ form|crispy }#}
+<div class="form-row">
+	<div class="form-group col-md-4 mb-0">
+		{{form.sample_id|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.analyte|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.test_date|as_crispy_field}}
+	</div>
+</div>
+<br>
+<div class="form-row">
+	<div class="form-group col-md-3 mb-0">
+		{{form.method|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.rep|as_crispy_field}}
+	</div>
+	
+	<div class="form-group col-md-3 mb-0">
+		{{form.lot|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.lot_exp|as_crispy_field}}
+	</div>
+</div>
+<br>
+
+<br>
+<div class="form-row">
+	
+
+	<div class="form-group col-md-1 mb-0">
+		{{form.i_well_1|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.i_well_2|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.i_well_3|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.i_well_4|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.i_well_5|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.i_well_6|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.i_well_7|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.i_well_8|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.i_well_9|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.i_well_10|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.i_well_11|as_crispy_field}}
+	</div>
+
+</div>
+<br>
+<br> 
+<div class="form-row">
+	
+
+	<div class="form-group col-md-1 mb-0">
+		{{form.e_well_1|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.e_well_2|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.e_well_3|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.e_well_4|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.e_well_5|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.e_well_6|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.e_well_7|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.e_well_8|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.e_well_9|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.e_well_10|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-1 mb-0">
+		{{form.e_well_11|as_crispy_field}}
+	</div>
+
+</div>
+<br>
+<br>
+<div class="form-row">
+	
+
+	<div class="form-group col-md-6 mb-0">
+		{{form.exc_comments|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-6 mb-0">
+		{{form.misc_comments|as_crispy_field}}
+	</div>
+
+</div>
+<br>
+<br>
+<div class="form-row">
+	
+
+	<div class="form-group col-md-6 mb-0">
+		{{form.card_result|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-6 mb-0">
+		{{form.abid_interp|as_crispy_field}}
+	</div>
+
+
+<input type="submit" class="btn btn-block" value="Submit">
+</form>
+
+
+<br>
+{% endblock %}

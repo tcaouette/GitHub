@@ -1,0 +1,40 @@
+h1{
+	text-align:left;
+	margin:50px 12px;
+}
+h2{
+	text-align:left;
+	margin:10px 12px
+}
+p {
+	text-align:left;
+	margin:1px 12px;
+}
+
+table{
+	width:45%;
+	
+
+}
+
+td {
+	padding:15px	
+
+}
+
+a{
+	color:#FF6600;
+	margin:1px 12px;
+}
+input[type=submit]{
+	width:20%;
+	background-color:#00A650;
+	color:white;
+	padding:10px 1px;
+	margin:1px 12px;
+	border: none;
+	border-radius:6px;
+	cursor:pointer;
+
+}
+
