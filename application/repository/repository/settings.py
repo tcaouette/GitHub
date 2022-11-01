@@ -18,12 +18,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'c%mzvoq&17!72ejcui21v5ex8o8r*k1em!u#4l5^xf(c$k%0%4'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =True 
 
-ALLOWED_HOSTS = ['10.241.200.50','10.17.80.13','usredlxd01.global.bio-rad.com','uscdm.global.bio-rad.com','global.bio-rad.com' ]
+ALLOWED_HOSTS = ['1','10.17.80.13','','','' ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Application definition
@@ -98,8 +98,8 @@ DATABASES = {
 #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 	'ENGINE':"sql_server.pyodbc",
 	'USER':"DjangoConnect",
-	'PASSWORD':"Data4You",
-	'NAME':"Repository",
+	'PASSWORD':",
+	'NAME':"",
 	'OPTIONS':{
 			'dsn':'SQLServerDatabase',
 			'driver':'SQL Server Native Client 11.0'
@@ -109,8 +109,8 @@ DATABASES = {
     'ihab': {
 	'ENGINE':"sql_server.pyodbc",
 	'USER':"DjangoConnect",
-	'PASSWORD':"Data4You",
-	#'NAME':"DK_Test_ClinTrial_IHD_ABID",
+	'PASSWORD':"",
+	#'NAME':"",
 	'NAME':"IHAB",
 	'OPTIONS':{
 			'dsn':'SQLServerDatabase',
@@ -121,8 +121,8 @@ DATABASES = {
     'rvpsyndromic': {
 	'ENGINE':"sql_server.pyodbc",
 	'USER':"DjangoConnect",
-	'PASSWORD':"Data4You",
-	#'NAME':"DK_Test_ClinTrial_IHD_ABID",
+	'PASSWORD':"",
+	#'NAME':"",
 	'NAME':"RVP",
 	'OPTIONS':{
 			'dsn':'SQLServerDatabase',
@@ -203,9 +203,9 @@ LOGOUT_URL ='/'
 LOGIN_REDIRECT ='/'
 
 #EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST= "smtp.bio-rad.com"#"smtp-mail.outlook.com"
-DEFAULT_FROM_EMAIL = "cdm_webmaster@bio-rad.com"#"webmastercdmbiorad@outlook.com"
-#EMAIL_HOST_USER= "webmastercdmbiorad@outlook.com"
-#EMAIL_HOST_PASSWORD= "Bi0R@d2020"
-EMAIL_PORT= 25 #port 25 is outlook port #
+EMAIL_HOST= ""
+DEFAULT_FROM_EMAIL = ""
+#EMAIL_HOST_USER= 
+#EMAIL_HOST_PASSWORD= 
+EMAIL_PORT= 
 EMAIL_USE_TLS= True
