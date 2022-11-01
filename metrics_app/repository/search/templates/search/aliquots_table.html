@@ -1,0 +1,127 @@
+{% extends "search/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+
+<header>
+	<h1>
+	Aliquot Table	
+	</h1>
+<div>
+	<form method="get" action ="{% url 'search:aliquot_table' %}">
+		<input name="q" id="id_q" type="text" class="form-control" placeholder="Search...." value="{{query_string}}"/>
+		<input type="submit" value="Search">
+		<button onclick="exportTableToCSV('aliquot_inventory.csv')">Export Table to CSV </button>
+		</form>
+				<form method="POST" action="{% url 'search:aliquot_table'  %}">{% csrf_token %}
+</div>
+</header>
+
+<!--<table class='aliquot'>-->
+<table id="table_format" class="table table-bordered" >
+	<thead>
+		<tr>
+			<th> Select Aliquot </th>
+			<th> Cage </th>
+			<th> Cane </th>
+			<th> Stack </th>
+			<th> Freezer </th>
+			<th> Box ID </th>
+			<th> AQID </th>
+			<th> Original ID </th>
+			<th> Grid </th>
+			<th> Label Information </th>
+			<th> Volume (mL) </th>
+			<th> Insert Date </th>
+		</tr>
+		<tr class="notformatted">
+			<th> Select Aliquot </th>
+			<th> Cage </th>
+			<th> Cane </th>
+			<th> Stack </th>
+			<th> Freezer </th>
+			<th> Box ID </th>
+			<th> AQID </th>
+			<th> Original ID </th>
+			<th> Grid </th>
+			<th> Label Information </th>
+			<th> Volume (mL) </th>
+			<th> Insert Date </th>
+		</tr>
+		</thead>
+		<tbody>
+						
+			{% for a in found_entries %}
+			<tr>
+				<td>{% if a.boxid %}<input type="checkbox" value="{{a.aqid}}" name="for_action" id="for_action"> {% endif %}</td> 
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.boxid.cage}}</a>{%else %}-Error No Box ID- {% endif %} </td>
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.boxid.cane}}</a>{%else %}-Error No Box ID- {% endif %} </td>
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.boxid.stack}}</a>{%else %}-Error No Box ID- {% endif %} </td>
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.boxid.freezer}}</a>{%else %}-Error No Box ID- {% endif %} </td>
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.boxid}}</a>{%else%}-Error No Box ID- {% endif %} </td>
+				
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.aqid}}</a>  {%else %}-Error No Box ID- {% endif %} </td>
+			
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.originalid}}</a> {%else %}-Error No Box ID- {% endif %} </td>
+				
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.grid}}</a> {%else %}-Error No Box ID- {% endif %} </td>
+
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.labelinfo}}</a>{%else%}-Error No Box ID- {% endif %} </td>
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.volume}}</a>{%else%}-Error No Box ID- {% endif %} </td>
+				<td>{% if a.boxid %}<a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.insertdate}}</a> {%else%}-Error No Box ID- {% endif %} </td>
+
+
+			</tr>
+			{% endfor %}
+		</tbody>
+		<tfoot class="foot">
+			<tr class="foot">
+				
+				<td colspan="1"> <button class="floater" name="update" type="submit" >Check Out</button></td>
+				</form>
+			<td colspan="10"></td>	
+				<td colspan="1"></td>
+			</tr>
+		</tfoot>
+		</table>
+<div id="page-content" class="well">
+
+
+		{% if found_entries.has_other_pages %}
+			<ul class="pagination flex-sm-wrap">
+				{% if found_entries.has_previous %}
+					<li> <a href="?page={{ found_entries.previous_page_number }}">&laquo;</a></li>
+				{% else %}
+					<li class="disabled"><span>&laquo;</span><li>
+				{% endif %}
+
+
+				
+
+				{% for i in found_entries.paginator.page_range %}
+					{% if found_entries.number == i %}
+						<li class="active"><span> {{i}}<span class="sr-only">(current)</span></span></li>
+					{#% else %#}
+					{% elif i > found_entries.number|add:'-15' and i < found_entries.number|add:'15' %}
+						<li><a href="?page={{i}}">{{i}}</a></li>
+					{% endif %}
+				{% endfor %}
+
+				{% if found_entries.paginator.num_pages > found_entries.number|add:'15' %}
+					<li> <a href="?page={{found_entries.number|add:'15'}}">&hellip;</a></li>
+				{% endif %}
+
+				{% if found_entries.has_next %}
+					<li><a href="?page={{found_entries.next_page_number}}">&raquo;</a></li>
+					<li><a class="btn btn-outline-info mb-4" href="?page={{found_entries.paginator.num_pages}}">Last Page:  {{found_entries.paginator.num_pages}}</a></li>
+				{% else %}
+					<li class="disabled"><span>&raquo;</span></li>
+				{% endif %}
+			</ul>
+		{% endif %}
+</div>
+
+
+	{% endblock %}

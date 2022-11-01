@@ -1,0 +1,68 @@
+
+
+{% extends "search/base.html" %}
+	{% block content %}
+
+{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static "search/list.css" %}">
+	<header class="grid-header">
+		<h1>Search The Box Repository View </h1>
+		<p>Enter a box number to narrow the table's view </p>
+	</header>	
+		<form method="GET">
+			<input type="search" class="form-control" name="search" placeholder ="Search...">
+		</form>
+	<ul>
+	<p> Freezer B has the following counts</p>
+		<li><strong>Freezer B:</strong> {{ num_freezer }} </li>
+	<br>
+	<br>
+
+	<table class="grid-pattern">
+	<tr>
+		<th> Freezer</th>
+		<th>Cage</th>
+		<th> Cane</th>
+		<th> Stack</th>
+		<th> Boxid </th>
+		<th> Invnum </th>
+		<th> Insertdate</th>
+		<th> Invcomments</th>
+	</tr>
+	{% for i in freezer %}
+	<tr>
+		
+		<td>{{i.freezer }} </td>
+		<td>{{i.cage }} </td>
+		<td>{{i.cane }} </td>
+		<td>{{i.stack }} </td>
+		<td>{{i.boxid }} </td>
+		<td>{{i.invnum }} </td>
+		<td>{{i.insertdate }} </td>
+		<td>{{i.invcomments }} </td>
+	</tr>
+		
+	{% endfor %}	
+	</table>
+	{% if pages.has_other_pages %}
+		<ul class="pagination">
+		{% if pages.has_previous %}
+			<li> <a href="?page={{pages.previous_page_number }}">&laquo;</a></li>
+		{% else %}
+			<li class ="disabled"><span>&laquo;</span></li>
+		{% endif %}
+		{% for i in pages.paginator.page_range %}
+			{% if pages.number == i %}
+				<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+			{% else %}
+				<li><a href="?page={{ i }}">{{ i }} </a></li>
+			{% endif %}
+		{% endfor %}
+		{% if pages.has_next %}
+			<li><a href="?page={{ pages.next_page_number }}">&raquo;</a></li>
+		{% else %}
+			<li class="disabled"><span>&raquo;</span></li>
+		{% endif %}
+		</ul>
+	{% endif %}
+{% endblock %}

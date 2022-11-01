@@ -1,0 +1,7 @@
+{% extends "cdm_home/base.html" %}
+	{% block content %}
+	{% load static %}
+			<link rel="stylesheet" type="text/css" href="{% static "search/login.css" %}">
+		<p> Logged out!</p>
+		<a href="{% url 'login' %}"> Login again? Click here! </a>
+	{% endblock %}

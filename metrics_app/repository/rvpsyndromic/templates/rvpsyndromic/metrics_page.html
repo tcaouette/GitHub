@@ -1,0 +1,44 @@
+
+{% extends "rvpsyndromic/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+		{% if messages %}
+			<div class='alert alert-success'>
+			{% for message in messages %}
+				{{message}}
+			{%endfor%}
+			</div>
+		{%endif%}
+<header>
+	
+	<h1> Metrics Under Development</h1>
+
+	
+
+
+</header>
+<style>
+
+</style>	
+<body>
+
+
+
+</body>	
+<div class="grid-container">
+		{% if  user.get_username == 'datamgt' or user.get_username == 'dk_admin' or user.get_username == 'lsutton' or user.get_username == 'LMclaughlin' %}
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:dashboard'%}> Dashboard</a></li></div>
+		{% elif user.get_username == 'PVakharia' or user.get_username == 'user2' %}
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:dashboard'%}> Dashboard</a></li></div>
+		{% elif user.get_username == 'bmathison' or user.get_username == 'user1' %}
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:dashboard'%}> Dashboard</a></li></div>
+		{% else %}
+			<li> NOT Authenticated! </li>
+		{% endif %}
+		<!--	<div class="grid-item"> <li><a href="{#% url 'ihab:metric' %#}">IH-500 Antibody ID Metrics</a></li></div>-->
+	
+</div>	
+
+{% endblock %}

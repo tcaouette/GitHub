@@ -1,0 +1,63 @@
+
+{% extends "rvpsyndromic/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+		{% if messages %}
+			<div class='alert alert-success'>
+			{% for message in messages %}
+				{{message}}
+			{%endfor%}
+			</div>
+		{%endif%}
+<header>
+	
+	<h1>  Data Views </h1>
+	<p> Welcome to the Syndromic Panel App!</p>
+
+	
+
+
+</header>
+<style>
+
+</style>	
+<body>
+
+
+
+</body>	
+<div class="grid-container">
+		{% if  user.get_username == 'datamgt' or user.get_username == 'dk_admin' or user.get_username == 'lsutton' or user.get_username == 'LMclaughlin'%}
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_ecrf_view'%}> Electronic Case Report Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_brpcr'%}> Site Investigational Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:brpcrinv'%}> Site Investigational Excluded Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_cov2pcr'%}> SARS-Cov-2 Reference Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:cov2inv'%}> SARS-Cov-2 Excluded Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:refflu'%}> InfA/InfB/RSV Reference Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:reffluinv'%}> InfA/InfB/RSV Excluded Results</a></li></div>
+		{% elif user.get_username == 'PVakharia' or user.get_username == 'user2' %}
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_ecrf_view'%}> Electronic Case Report Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_brpcr'%}> Site Investigational Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:brpcrinv'%}> Site Investigational Excluded Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_cov2pcr'%}> SARS-Cov-2 Reference Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:cov2inv'%}> SARS-Cov-2 Excluded Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:refflu'%}> InfA/InfB/RSV Reference Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:reffluinv'%}> InfA/InfB/RSV Excluded Results</a></li></div>
+		{% elif user.get_username == 'bmathison' or user.get_username == 'user1' %}
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_ecrf_view'%}> Electronic Case Report Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_brpcr'%}> Site Investigational Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:brpcrinv'%}> Site Investigational Excluded Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:stg1_cov2pcr'%}> SARS-Cov-2 Reference Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:cov2inv'%}> SARS-Cov-2 Excluded Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:refflu'%}> InfA/InfB/RSV Reference Results</a></li></div>
+			<div class="grid-item"> <li><a href={% url 'rvpsyndromic:reffluinv'%}> InfA/InfB/RSV Excluded Results</a></li></div>
+		{% else %}
+			<li> NOT Authenticated! </li>
+		{% endif %}
+		<!--	<div class="grid-item"> <li><a href="{#% url 'ihab:metric' %#}">IH-500 Antibody ID Metrics</a></li></div>-->
+	
+</div>	
+
+{% endblock %}

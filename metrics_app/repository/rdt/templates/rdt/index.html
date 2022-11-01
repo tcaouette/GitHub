@@ -1,0 +1,33 @@
+
+
+{% extends "rdt/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+<header>
+	
+	<h1> RDT </h1>
+	<p> Welcome to the RDT App!</p>
+
+	
+
+
+</header>
+<style>
+
+</style>	
+<body>
+
+
+
+</body>	
+<div class="grid-container">
+			<div class="grid-item"> <li><a href={#% url 'rvpsyndromic:stg0_flu1'%#}>RDT</a></li></div>
+			<div class="grid-item"> <li><a href={#% url 'rvpsyndromic:stg0_flu2'%#}>RDT</a></li></div>
+			<div class="grid-item"> <li><a href={#% url 'rvpsyndromic:stg1_ecrf'%#}>RDT</a></li></div>
+			<div class="grid-item"> <li><a href={#% url 'rvpsyndromic:stg1_brpcr'%#}>RDT</a></li></div>
+	
+</div>	
+
+{% endblock %}

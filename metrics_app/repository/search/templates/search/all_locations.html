@@ -1,0 +1,100 @@
+
+{% extends 'search/base.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+<script src="{% static 'search/box.js' %}" ></script>
+
+		{% if messages %}
+			<div class='alert alert-success'>
+			{% for message in messages %}
+				{{message}}
+			{%endfor%}
+			</div>
+		{%endif%}
+<div class="sidenavr">
+{% for i in aliquot %}
+		{% if forloop.first %}
+
+	<a id="shipping" href="{% url 'search:shipping' i.boxid %}">Shipping</a>
+		{% endif %}
+{% endfor %}	
+</div>
+<header>	
+
+
+
+	<h1>
+
+	Locations 
+
+	</h1>
+
+<div class="grid-container">
+
+	
+	<div class="grid-item">
+		
+	 <form method="get" action ="" >
+		<button onclick="exportTableToCSV('aliquot_detail.csv')">Export Table to CSV </button>
+	</form>
+	</div>
+
+
+</div>	
+
+	</header>
+		
+<table id="table_format" class="table table-bordered" >
+			
+	<thead>
+
+		<tr>
+			<th> Site ID   </th>
+			<th> Site Country </th>
+			<th> Site State  </th>
+			<th >Site Name</th>
+			<th> Site Abbreviation </th>
+		</tr>
+		
+		<tr class="notformatted">
+			<th> Site ID   </th>
+			<th> Site Country </th>
+			<th> Site State  </th>
+			<th >Site Name</th>
+			<th> Site Abbreviation </th>
+			
+			
+		</tr>
+		</thead>
+		<tbody>
+		
+		{% for l in location %}				
+				<tr>
+			
+				<td><strong> {{l.siteid }}</strong>  </td>
+				<td><strong> {{l.sitecountry}}</strong>  </td>
+				<td><strong> {{l.sitestate}}</strong> </td>
+				<td><strong> {{l.sitename}}</strong>  </td>
+				<td><strong> {{l.siteabbr}}</strong> </td>
+			
+				
+							
+			</tr>
+		{% endfor %}
+
+		</tbody>
+		<tfoot class="foot">
+			<tr class="foot">
+				<td colspan="12"> </td>	
+			
+					
+				
+		
+			</tr>
+		</tfoot>
+</table>
+
+{% endblock %}

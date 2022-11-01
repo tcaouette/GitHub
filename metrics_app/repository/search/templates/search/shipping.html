@@ -1,0 +1,122 @@
+
+{% extends 'search/base.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+
+		{% if messages %}
+			<div class='alert alert-success'>
+			{% for message in messages %}
+				{{message}}
+			{%endfor%}
+			</div>
+		{%endif%}
+<header>	
+
+
+
+	<h1>
+
+	Ship Aliquots	
+
+	</h1>
+  <p>This page is for shipping purposes only. If an aliquot is shipped by accident and has not been physically moved, the user can update the checkout field from 2 (shipped) to 0 (availible). </p>
+
+<div class="grid-container">
+	<div class="grid-item">
+	<form method="get" action ="" >
+	<!--	<button name="d" type="submit"> Download to CSV </button>-->
+		<button onclick="exportTableToCSV('aliquot_detail.csv')">Export Table to CSV </button>
+	</form>
+	</div>
+	
+	<div class="grid-item">
+		{% for i in aliquot %}
+		{% if forloop.first %}
+	<caption><br>You are in box:<strong> {{ i.boxid }}</strong>.
+		{% endif %}
+		{% endfor %}
+	</div> 
+	<div class="grid-item">
+		{% for i in aliquot %}
+		{% if forloop.first %}
+	<form method="POST" action="{% url 'search:shipping' i.boxid  %}">{% csrf_token %}
+
+<label for="location">Shipping Location</label><select name="location" id="location" required>
+						<option value="">Select Site... </option>
+						{% for loc in locations %}
+							<option value="{{loc.siteabbr}}">{{loc.siteabbr}}</option>
+						{% endfor %}
+						</select>
+<!--<input name="location" id="location" type="text" required>-->
+		{% endif %}
+		{% endfor %}
+ 
+</div>
+</div>
+</header>
+<table id="table_format" class="table table-bordered" >
+	<thead>
+
+		<tr>
+		<!--	<th> Box ID </th>-->
+			<th>Select Aliquot    </th>
+			<th> Aliquot ID   </th>
+			
+			<th> Volume (mL) </th>
+			<th> Box ID </th>
+			<th> Already Shipped? </th>
+		</tr>
+		
+		<tr class="notformatted">
+		<!--	<th> Box ID </th>-->
+			<th> Select Aliquot   </th>
+			<th> Aliquot ID   </th>
+			
+			<th> Volume (mL) </th>
+			<th> Box ID </th>
+			<th> Already Shipped? </th>
+
+
+			
+			
+		</tr>
+		</thead>
+		<tbody>
+
+		{% for a in aliquot %}				
+		{% if a.checkout != -1 %}		
+			<tr>
+				<td>{% if a.checkout == 0  %}<form method="POST" action="{% url 'search:shipping' a.boxid  %}">{% csrf_token %}
+																<input type="checkbox" value="{{a.aqid}}" name="for_action" id="for_action">{% else %} {% endif %}</td> 
+		
+				<td><strong> {{a.aqid }}</strong>- <a href="{% url 'search:aliquot_update' a.aqid%}">Update</a></td>
+				<td><strong> {{a.volume}}</strong>  </td>
+				<td><strong> {{a.boxid}}</strong>  </td>
+				<td>{% if a.checkout == 2  %}<strong> Yes </strong> {% else  %} <strong>No  </strong>{% endif %} </td>
+
+				 
+		
+			</tr>
+		{% endif %}
+		{% endfor %}	
+		</tbody>
+		<tfoot class="foot">
+			<tr class="foot">
+		
+				<td colspan="1"> <button class="floater" name="update" type="submit" >Ship Items</button></td>
+				</form>
+				<td colspan="11"> </td>	
+			
+					
+				
+		
+			</tr>
+		</tfoot>
+
+</table>
+
+{%endblock%}
+

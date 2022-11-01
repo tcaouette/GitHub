@@ -1,0 +1,44 @@
+hello hi
+hello hi
+Scrape Completed and Excel File Generated
+Scrape Completed and Excel File Generated
+Scrape Completed and Excel File Generated
+Scrape Completed and Excel File Generated
+Scrape Completed and Excel File Generated
+Scrape Failed and No Excel File Created
+Scrape Completed and Excel File Generated
+Scrape Failed and No Excel File Created
+Scrape Completed and Excel File Generated
+Scrape Completed and Excel File Generated
+Scrape Completed and Excel File Generated
+Scrape Completed and Excel File Generated
+Scrape Completed and Excel File Generated
+Scrape Completed and Excel File Generated
+Scrape Completed and Excel File Generated
+Scrape Completed and Excel File Generated
+Data Successfully Appended to SQL Table
+Scrape Completed and Excel File Generated
+Scrape Completed and Excel File Generated
+Data Successfully Appended to SQL Table
+Scrape Completed and Excel File Generated
+Data Successfully Appended to SQL Table
+Scrape Completed and Excel File Generated
+Data Successfully Appended to SQL Table
+Scrape Completed and Excel File Generated
+Data Successfully Appended to SQL Table
+Scrape Completed and Excel File Generated
+Data Successfully Appended to SQL Table
+Scrape Completed and Excel File Generated
+Data Successfully Appended to SQL Table
+Scrape Completed and Excel File Generated
+Data Successfully Appended to SQL Table
+Scrape Completed and Excel File Generated
+Data Successfully Appended to SQL Table
+Scrape Completed and Excel File Generated
+Data Successfully Appended to SQL Table
+Scrape Completed and Excel File Generated
+Data Successfully Appended to SQL Table
+Scrape Completed and Excel File Generated
+Data Successfully Appended to SQL Table
+Scrape Completed and Excel File Generated 20200520_12:41:30
+Data Successfully Appended to SQL Table 20200520_12:41:30

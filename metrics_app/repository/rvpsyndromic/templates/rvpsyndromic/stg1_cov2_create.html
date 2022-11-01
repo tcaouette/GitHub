@@ -1,0 +1,96 @@
+
+{% extends "rvpsyndromic/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1> SARS-Cov-2 Reference Update Form </h1>
+<br>
+<br>
+
+<form action='.' method="POST">
+{% csrf_token%}
+{#{ form|crispy }#}
+<div class="form-row">
+	<div class="form-group col-md-3 mb-0">
+		{{form.sampleid|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.refcov2_operator|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.refcov2_kit_name|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.refcov2_kit_lotid|as_crispy_field}}
+	</div>
+	
+</div>
+<div class="form-row">
+	<div class="form-group col-md-6 mb-0">
+		{{form.refcov2_test_name|as_crispy_field}}
+	</div>
+
+</div>
+<br>
+<div class="form-row">
+	<div class="form-group col-md-6 mb-0">
+		{{form.refcov2_kit_expiration_date|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-6 mb-0">
+		{{form.refcov2_test_date|as_crispy_field}}
+	</div>
+
+</div>
+<br>
+
+<div class="form-row">
+	<div class="form-group col-md-6 mb-0">
+		{{form.refcov2_well_id|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-6 mb-0">
+		{{form.refcov2_result_interpretation|as_crispy_field}}
+	</div>
+
+
+</div>
+</br>
+<div class="form-row">
+	<div class="form-group col-md-4 mb-0">
+		{{form.refcov2_n1_concentration|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.refcov2_n2_concentration|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.refcov2_rp_concentration|as_crispy_field}}
+	</div>
+
+</div>
+</br>
+<div class="form-row">
+	<div class="form-group col-md-4 mb-0">
+		{{form.refcov2_n1_droplet_count|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.refcov2_n2_droplet_count|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-4 mb-0">
+		{{form.refcov2_rp_droplet_count|as_crispy_field}}
+	</div>
+
+</div>
+</br>
+<div class="form-row">
+	<div class="form-group col-md-6 mb-0">
+		{{form.refcov2_notes|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-6 mb-0">
+		{{form.excl_flag|as_crispy_field}}
+	</div>
+
+</div>
+</br>
+<input type="submit" class="btn btn-block" value="Submit">
+</form>
+</br>
+</br>
+{% endblock %}

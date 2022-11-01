@@ -1,0 +1,92 @@
+
+{% extends "rvpsyndromic/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+
+<header>
+<h1> SARS-Cov-2 Excluded Results </h1>
+<div>
+</div>
+</header>
+
+<!--<table class='aliquot'>-->
+<table id="table_format" class="table table-bordered" >
+	<thead>
+		<tr>
+			<th>Sample ID  </th>
+			<th>Test Name  </th>
+			<th>Test Date  </th>
+			<th>Kit Name  </th>
+			<th>Kit Lot ID  </th>
+			<th>Kit Exp Date  </th>
+			<th>Operator  </th>
+			<th>Well ID  </th>
+			<th>N1 Concentration  </th>
+			<th>N2 Concentration  </th>
+			<th>RP Concentration  </th>
+			<th>N1 Droplet Count  </th>
+			<th>N2 Droplet Count  </th>
+			<th>RP Droplet Count  </th>
+			<th>Result Interpretation  </th>
+			<th>Notes  </th>
+			<th>Excluded?  </th>
+		</tr>
+		<tr class="notformatted">
+			<th>Sample ID  </th>
+			<th>Test Name  </th>
+			<th>Test Date  </th>
+			<th>Kit Name  </th>
+			<th>Kit Lot ID  </th>
+			<th>Kit Exp Date  </th>
+			<th>Operator  </th>
+			<th>Well ID  </th>
+			<th>N1 Concentration  </th>
+			<th>N2 Concentration  </th>
+			<th>RP Concentration  </th>
+			<th>N1 Droplet Count  </th>
+			<th>N2 Droplet Count  </th>
+			<th>RP Droplet Count  </th>
+			<th>Result Interpretation  </th>
+			<th>Notes  </th>
+			<th>Excluded?  </th>
+
+		</tr>
+		</thead>
+		<tbody>
+						
+			{% for c in cov2inv %}
+			<tr>
+		<td>	{{c.sampleid}}</td> 
+   			<td>{{c.refcov2_test_name}} </td>
+    			<td>{{c.refcov2_test_date}} </td>
+    			<td>{{c.refcov2_kit_name}}</td>
+    			<td>{{c.refcov2_kit_lotid}}</td>
+    			<td>{{c.refcov2_kit_expiration_date}}</td>
+    			<td>{{c.refcov2_operator}} </td>
+    		<td>	{{c.refcov2_well_id}}</td>
+    		<td>	{{c.refcov2_n1_concentration}}</td>
+    			<td>{{c.refcov2_n2_concentration}}</td>
+    		<td>	{{c.refcov2_rp_concentration}}</td>
+    		<td>	{{c.refcov2_n1_droplet_count}}</td>
+    		<td>	{{c.refcov2_n2_droplet_count}}</td>
+    		<td>	{{c.refcov2_rp_droplet_count}}</td>
+    		<td>	{{c.refcov2_result_interpretation}}</td>
+    		<td>	{{c.refcov2_notes}}</td>
+    		<td>	{{c.excl_flag}}</td>
+
+
+			</tr>
+			{% endfor %}
+		</tbody>
+		</table>
+
+{%endblock%}
+    
+
+
+
+
+

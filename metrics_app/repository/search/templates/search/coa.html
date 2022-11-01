@@ -1,0 +1,104 @@
+
+{% extends 'search/base.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+<script src="{% static 'search/box.js' %}" ></script>
+
+		{% if messages %}
+			<div class='alert alert-success'>
+			{% for message in messages %}
+				{{message}}
+			{%endfor%}
+			</div>
+		{%endif%}
+<div class="sidenavr">
+{% for i in aliquot %}
+		{% if forloop.first %}
+
+	<a id="shipping" href="{% url 'search:shipping' i.boxid %}">Shipping</a>
+		{% endif %}
+{% endfor %}	
+</div>
+<header>	
+
+
+
+	<h1>
+
+	Locations 
+
+	</h1>
+
+<div class="grid-container">
+
+	
+	<div class="grid-item">
+		
+	 <form method="get" action ="" >
+		<button onclick="exportTableToCSV('aliquot_detail.csv')">Export Table to CSV </button>
+	</form>
+	</div>
+
+
+</div>	
+
+	</header>
+		
+<table id="table_format" class="table table-bordered" >
+			
+	<thead>
+
+		<tr>
+			<th> year   </th>
+			<th> lot id </th>
+			<th> #  </th>
+			<th >original id</th>
+			<th> coa </th>
+			<th> pdf content </th>
+			<th> comments </th>
+		</tr>
+		
+		<tr class="notformatted">
+			<th> year   </th>
+			<th> lot id </th>
+			<th> #  </th>
+			<th >original id</th>
+			<th> coa </th>
+			<th> pdf content </th>
+			<th> comments </th>
+			
+			
+		</tr>
+		</thead>
+		<tbody>
+		
+		{% for c in coa %}				
+				<tr>
+			
+				<td><strong> {{c.year }}</strong>  </td>
+				<td><strong> {{c.lotid}}</strong>  </td>
+				<td><strong> {{c.field_field}}</strong>  </td>
+				<td><strong> {{c.originalid}}</strong> </td>
+				<td><strong><a href="file:///\\global.bio-rad.com\groups\USRED_Clinical%20Data\test_pdf.pdf" target="_blank">{{c.cofa}}</a></strong>  </td>
+				<td><strong> {{c.pdfcontent}}</strong> </td>
+				<td><strong> {{c.comments}}</strong> </td>
+				
+							
+			</tr>
+		{% endfor %}
+
+		</tbody>
+		<tfoot class="foot">
+			<tr class="foot">
+				<td colspan="12"> </td>	
+			
+					
+				
+		
+			</tr>
+		</tfoot>
+</table>
+{% endblock%}

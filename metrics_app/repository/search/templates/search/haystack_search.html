@@ -1,0 +1,17 @@
+
+{% extends "search/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+{% if aliquots.count > 0 %}
+
+{% for aliquot in aliquots %}
+
+	<li> <a href="{{aliquots.object.get_absolute_url}}">{{aliquots.object.aqid}} </a> </li>
+{% endfor %}
+{% else %}
+<li> NOTHING </li>
+{% endif %}
+{% endblock %}

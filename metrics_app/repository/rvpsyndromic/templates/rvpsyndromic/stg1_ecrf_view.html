@@ -1,0 +1,124 @@
+
+{% extends "rvpsyndromic/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+
+<header>
+<h1>Electronic Case Report Results </h1>
+<div>
+</div>
+</header>
+
+<!--<table class='aliquot'>-->
+<table id="table_format" class="table table-bordered" >
+	<thead>
+		<tr>
+			<th> Subject ID </th>
+			<th> Specimen ID </th>
+			<th> Subject Age</th>
+			<th> Subject Sex </th>
+			<th> Subject Race </th>
+			<th> Subject Ethnicity </th>
+			<th> Collection Date </th>
+			<th> Symptom Date </th>
+			<th> Symptom Desc </th>
+			<th> Symptom Cough </th>
+			<th> Symptom Conges </th>
+			<th> Symptom Rhinorrhea </th>
+			<th> Symptom Sore Throat </th>
+			<th> Symptom Fever  </th>
+			<th> Symptom Headache </th>
+			<th>Symptom Myalgia </th>
+			<th> Symptom Other </th>
+			<th>Symptom Hospitalized  </th>
+			<th> Flu AB Kitname </th>
+			<th>Flu A Test Result </th>
+			<th>Flu A CT Value  </th>
+			<th>Flu B Test Result  </th>
+			<th>Flu B CT Value  </th>
+			<th>RSV Kit Name  </th>
+			<th>RSV Test Value  </th>
+			<th>RSV CT Value  </th>
+			<th>COV2 Kit Name  </th>
+			<th>COV2 Test Result  </th>
+			<th>COV2 CT Value  </th>
+			<th>Excluded?  </th>
+		</tr>
+		<tr class="notformatted">
+			<th> Subject ID </th>
+			<th> Specimen ID </th>
+			<th> Subject Age</th>
+			<th> Subject Sex </th>
+			<th> Subject Race </th>
+			<th> Subject Ethnicity </th>
+			<th> Collection Date </th>
+			<th> Symptom Date </th>
+			<th> Symptom Desc </th>
+			<th> Symptom Cough </th>
+			<th> Symptom Conges </th>
+			<th> Symptom Rhinorrhea </th>
+			<th> Symptom Sore Throat </th>
+			<th> Symptom Fever  </th>
+			<th> Symptom Headache </th>
+			<th>Symptom Myalgia </th>
+			<th> Symptom Other </th>
+			<th>Symptom Hospitalized  </th>
+			<th> Flu AB Kitname </th>
+			<th>Flu A Test Result </th>
+			<th>Flu A CT Value  </th>
+			<th>Flu B Test Result  </th>
+			<th>Flu B CT Value  </th>
+			<th>RSV Kit Name  </th>
+			<th>RSV Test Value  </th>
+			<th>RSV CT Value  </th>
+			<th>COV2 Kit Name  </th>
+			<th>COV2 Test Result  </th>
+			<th>COV2 CT Value  </th>
+			<th>Excluded?  </th>
+		</tr>
+		</thead>
+		<tbody>
+						
+			{% for e in ecrf %}
+			<tr>
+                                <td> {{e.subjectid}}</td> 
+    				<td> {{e.specimenid}}</td> 
+    				<td> {{e.subject_age}}</td> 
+				<td>{{e.subject_sex}}</td> 
+				<td>{{e.subject_race}}</td>
+				<td>{{e.subject_ethnicity}}</td>
+				<td>{{e.collection_date}}</td> 
+    				<td>{{e.symptom_date}}</td> 
+    				<td>{{e.symptom_desc}}</td>
+    				<td>{{e.symptom_cough}}</td>
+    				<td>{{e.symptom_conges}}</td> 
+    				<td>{{e.symptom_rhinorrhea}}</td> 
+    				<td>{{e.symptom_sore_throat}}</td>
+    				<td>{{e.symptom_fever}}</td> 
+    				<td>{{e.symptom_headache}}</td>
+    				<td>{{e.symptom_myalgia}}</td>
+    				<td>{{e.symptom_other}}</td>
+    				<td>{{e.symptom_hospitalized}}</td>
+    				<td>{{e.influzab_kitname}}</td>
+    				<td>{{e.influza_testresult}}</td>
+    				<td>{{e.influza_ctvalue}}</td>
+    				<td>{{e.influzb_testresult}}</td>
+    				<td>{{e.influzb_ctvalue}}</td> 
+    				<td>{{e.rsv_kitname}}</td> 
+    				<td>{{e.rsv_testvalue}}</td>
+    				<td>{{e.rsv_ctvalues}}</td>
+    				<td>{{e.cov2_kitname}}</td>
+    				<td>{{e.cov2_testresult}}</td>
+    				<td>{{e.cov2_ctvalue}}</td>
+    				<td>{{e.excl_flag}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		<tfoot class="foot">
+		</tfoot>
+		</table>
+
+{%endblock%}

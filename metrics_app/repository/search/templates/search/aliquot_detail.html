@@ -1,0 +1,182 @@
+{% extends 'search/base.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+<script src="{% static 'search/box.js' %}" ></script>
+
+		{% if messages %}
+			<div class='alert alert-success'>
+			{% for message in messages %}
+				{{message}}
+			{%endfor%}
+			</div>
+		{%endif%}
+<div class="sidenavr">
+</div>
+<header>	
+
+
+
+	<h1>
+
+	Aliquot and Box Detail 
+
+	</h1>
+
+<div class="grid-container">
+
+	
+	<div class="grid-item">
+		
+	 <form method="get" action ="" >
+		<button onclick="exportTableToCSV('aliquot_detail.csv')">Export Table to CSV </button>
+	</form>
+	</div>
+	<div class="grid-item">	{% for i in aliquot %}
+		{% if forloop.first %}
+		You are in box:<strong> {{ i.boxid }}</strong>. If you would like to update the box<strong> {{i.boxid}}</strong> click--> <a href="{%url 'search:box_update' i.boxid  %}"><button>Update</button></a><br>
+		{% endif %}
+		{% endfor %}
+		
+	</div>
+	<div class="grid-item">	{% for i in aliquot %}
+		{% if forloop.first %}
+	<strong>Click here to Dispose of Aliquots - </strong> <a href="{% url 'search:aliquot_dispose' i.boxid %}"><button>Dispose Aliquots</button></a><br>
+
+		{% endif %}
+		{% endfor %}
+		
+	</div>
+	<div class="grid-item">
+
+{% for i in aliquot %}
+		{% if forloop.first %}
+
+	<a id="shipping" href="{% url 'search:shipping' i.boxid %}"><button>Shipping</button></a>
+		{% endif %}
+{% endfor %}	
+	</div>
+</div>	
+
+	</header>
+		
+			<!--	<form method="POST" action="{#% url 'aliquot_detail'  %#}">-->{#% csrf_token %#}
+<!--<table class='update'>-->
+<table id="table_format" class="table table-bordered" >
+			
+	<thead>
+
+		<tr>
+		<!--	<th> Box ID </th>-->
+			<th> Select Aliquot </th>
+			<th> AQID   </th>
+			
+			<th> Cage  </th>
+			<th> Cane  </th>
+			<th> Stack  </th>
+			<th> Freezer  </th>
+			
+	
+			<th> Original ID  </th>
+			<th> Grid  </th>
+			<th> Label Information   </th>
+			<th> Volume (mL) </th>
+			<th> Insert Date  </th>
+			<th >Checked Out?</th>
+			<th> Freeze/Thaw </th>
+		</tr>
+		
+		<tr class="notformatted">
+		<!--	<th> Box ID </th>-->
+			<th> Select Aliquot </th>
+			<th> AQID   </th>
+			
+			<th> Cage  </th>
+			<th> Cane  </th>
+			<th> Stack  </th>
+			<th> Freezer  </th>
+			
+	
+			<th> Original ID  </th>
+			<th> Grid  </th>
+			<th> Label Information   </th>
+			<th> Volume (mL) </th>
+			<th> Insert Date  </th>
+			<th>Checked Out?</th>
+			<th>Freeze/Thaw</th>
+			
+			
+		</tr>
+		</thead>
+		<tbody>
+{#% for f in freeze %#}
+	{#% if f.total_freeze <= 2 %#}
+		
+		{% for a in aliquot %}				
+		 {% if a.checkout != -1 and a.checkout != 2 %}		
+				<tr>
+		
+
+				 
+		
+				<td>{% if a.checkout == 0 %}<form method="POST" action="{% url 'search:aliquot_detail' a.boxid  %}">{% csrf_token %}
+																<input type="checkbox" value="{{a.aqid}}" name="for_action" id="for_action">{% else %} {% endif %}</td> 
+
+
+
+				<td><strong> {{a.aqid }}</strong>- <a href="{% url 'search:aliquot_update' a.aqid%}">Update</a></td>
+				<td><strong> {{a.boxid.cage}}</strong>   </td>
+				<td><strong> {{a.boxid.cane}}</strong>  </td>
+				<td><strong> {{a.boxid.stack}}</strong>  </td>
+				<td><strong> {{a.boxid.freezer}}</strong>  </td>
+				
+			
+				<td><strong> {{a.originalid }}</strong>  </td>
+				<td><strong> {{a.grid}}</strong>  </td>
+				<td><strong> {{a.labelinfo}}</strong> </td>
+				<td><strong> {{a.volume}}</strong>  </td>
+				<td><strong> {{a.insertdate}}</strong> </td>
+				<td>{% if a.checkout == 0  %}<strong> No </strong> {% else  %} <strong> Yes </strong>{% endif %} </td>	
+				<td><strong> {{a.freeze_thaw}}</strong> </td>
+			
+				
+							
+			</tr>
+		{% endif %}
+		{% endfor %}
+
+		</tbody>
+		<tfoot class="foot">
+			<tr class="foot">
+		
+				<td colspan="1"> <button class="floater" name="update" type="submit" onclick="return clicked();" >Check Out</button></td>
+				</form>
+				<td colspan="12"> </td>	
+			
+					
+				
+		
+			</tr>
+		</tfoot>
+</table>
+<script type="text/javascript">
+function clicked(){
+	if(!confirm('Are you shipping?')){
+		update.submit();
+	}else{
+		var ship = document.getElementById("shipping");
+		ship.style.background ="yellow";
+		{% for i in aliquot %}
+		{% if forloop.first %}
+			window.location.href="{% url 'search:shipping' i.boxid %}"
+			
+		{%endif%}
+		{%endfor%}
+		return false;
+	}
+}
+</script>
+
+{% endblock %}

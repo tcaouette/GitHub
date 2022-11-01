@@ -1,0 +1,48 @@
+
+{% extends "rvpsyndromic/base.html" %}
+{% block content %}
+<link href="http://cdn.pydata.org/bokeh/release/bokeh-2.0.1.min.css" rel="stylesheet" type="text/css">
+<link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.1.min.css" rel="stylesheet" type="text/css">
+<link href="http://cdn.pydata.org/bokeh/release/bokeh-tables-2.0.1.min.css" rel="stylesheet" type="text/css">
+
+{% load static %}
+<h1> CURRENTLY UNDER DEVELOPMENT</h1>
+<p> The current charts and metrics are currently under development</p>
+<p>Do NOT use for decision making. Do NOT disseminate or distribute </p>
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+<div>
+<h2> Electronic Case Report Sample Meta Data</h2>
+</div>
+<div class="grid-container">
+		
+			<div class="grid-item"><h2>{#{percent_in}#}% Of Samples In</h2></div>
+			<div class="grid-item"> <h3>Current Number of Samples in is {#{count_in}#} Out of 400 Samples</h3></div>
+		<!--	<div class="grid-item"> <h3>place holder</h3></div>-->
+</div>
+{{script|safe}}
+<div>
+<h2> Electronic Case Report Metrics</h2>
+</div>
+<div class="grid-container">
+		<div class="grid-item"> 
+
+			{{div | safe}}
+		</div>
+
+</div>
+<div class="grid-container">
+
+</div>
+<div class="grid-container">
+
+</div>
+<div class="grid-container">
+
+</div>
+<script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-2.0.1.min.js"></script>
+<script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.1.min.js></script>
+<script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-tables-2.0.1.min.js></script>
+<script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-ap1-2.0.1.min.js></script>
+<td>{#{script|safe}#}</td>
+<td>{#{script2|safe}#}</td>
+{% endblock %}

@@ -1,0 +1,24 @@
+{#% extends "search/base.html" %#}
+
+{#% block content %#}
+
+{#% if aliquots_list %#}
+ <!-- <ul>
+    {#% for a in aliquots_list %#}
+      <li>
+        <a href="{#{ a.get_absolute_url }#}">{#{ a.aqid }#}</a> ({#{a.boxid.freezer}#})
+      </li>
+    {#% endfor %#}
+  </ul>
+  {#% else %#}
+    <p>There are no aliquots in the repository.</p>-->
+  {#% endif %#}       
+{#% endblock %#}
+
+<head>
+<meta charset="utf-8">
+<title>Aliquot Charts</title>
+
+</head>
+<body>
+</body>

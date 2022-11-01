@@ -1,0 +1,154 @@
+
+{% extends "search/base.html" %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+
+
+<header>
+	<h1>
+	Aliquot Search Form	
+	</h1>
+
+</header>
+<form action"" method="get">
+	{{filter.form|crispy}}
+		
+	<input type="submit"/>
+		
+</form>
+{% if filter.qs %}
+<div>
+		<button onclick="exportTableToCSV('aliquot_inventory.csv')">Export Table to CSV </button>
+</div>
+<table id="table_format" class="table table-bordered" >
+
+	<thead>
+		<tr >
+		<!--	<th> Select Aliquot </th>-->
+			<th> Cage </th>
+			<th> Cane </th>
+			<th> Stack </th>
+			<th> Freezer </th>
+			<th> Box ID </th>
+			<th> AQID </th>
+			<th> Original ID </th>
+			<th> Grid </th>
+			<th> Label Information </th>
+			<th> Volume (mL) </th>
+			<th> Insert Date </th>
+			<th> Study Desc </th>
+			<th> Sample Type Desc </th>
+			<th> Sample Prep Desc </th>
+			<th> Panel Name </th>
+			<th> Panel Desc </th>
+			<th> Risk Category </th>
+			<th> Risk Group Desc </th>
+			<th> Manufacturer </th>
+			<th> Member # </th>
+			<th> Blood Type </th>
+			<th> HIV 1 </th>
+			<th> HIV 2 </th>
+			<th> HVO </th>
+			<th> HBS </th>
+			<th> HBC </th>
+			<th> HAV </th>
+			<th> HCV </th>
+			<th> MMRV </th>
+			<th> Influenza </th>
+			<th> SARS COV2 </th>
+		</tr>
+		<tr class="notformatted">
+			<th> Cage </th>
+			<th> Cane </th>
+			<th> Stack </th>
+			<th> Freezer </th>
+			<th> Box ID </th>
+			<th> AQID </th>
+			<th> Original ID </th>
+			<th> Grid </th>
+			<th> Label Information </th>
+			<th> Volume (mL) </th>
+			<th> Insert Date </th>
+			<th> Study Desc </th>
+
+			<th> Sample Type Desc </th>
+			<th> Sample Prep Desc </th>
+			<th> Panel Name </th>
+			<th> Panel Desc </th>
+			<th> Risk Category </th>
+			<th> Risk Group Desc </th>
+			<th> Manufacturer </th>
+			<th> Member # </th>
+			<th> Blood Type </th>
+			<th> HIV 1 </th>
+			<th> HIV 2 </th>
+			<th> HVO </th>
+			<th> HBS </th>
+			<th> HBC </th>
+			<th> HAV </th>
+			<th> HCV </th>
+			<th> MMRV </th>
+			<th> Influenza </th>
+			<th> SARS COV2 </th>
+		</tr>
+		</thead>
+		<tbody>
+
+
+{% for a in filter.qs %}
+			{% if a.checkout != -1 %}
+			<tr>
+				<!--<td><input type="checkbox" value="{#{a.aqid}#}" name="for_action" id="for_action"> </td>--> 
+				<td> {{a.boxid.cage}} </td>
+				<td> {{a.boxid.cane}} </td>
+				<td> {{a.boxid.stack}} </td>
+				<td>{{a.boxid.freezer}} </td>
+				<td> {{a.boxid}} </td>
+				
+				<td><a href="{% url 'search:aliquot_detail' a.boxid%}"> {{a.aqid}}</a> </td>
+			
+				<td> {{a.originalid}}</td>
+				
+				<td> {{a.grid}} </td>
+
+				<td> {{a.labelinfo}}</td>
+				<td>{{a.volume}} </td>
+				
+				<td> {{a.insertdate}} </td>
+				<td> {{a.studydesc}} </td>
+				<td> {{a.samtypedesc}} </td>
+				<td> {{a.samprepdesc}} </td>
+				<td> {{a.panelname}} </td>
+				<td> {{a.paneldesc}} </td>
+				<td> {{a.riskcategory}} </td>
+				<td>{{a.riskgroupdesc}} </td>
+				<td> {{a.manufacturer}} </td>
+				<td> {{a.membernum}} </td>
+				<td> {{a.bloodtype}}</td>
+				<td> {{a.hiv1}} </td>
+				<td> {{a.hiv2}} </td>
+				<td> {{a.hivo}} </td>
+				<td> {{a.hbs}} </td>
+				<td> {{a.hbc}} </td>
+				<td> {{a.hav}} </td>
+				<td> {{a.hcv}}</td>
+				<td> {{a.mmrv}} </td>
+				<td> {{a.influenza}} </td>
+				<td> {{a.sars_cov2}} </td>
+
+
+			</tr>
+				{%endif %}
+			{% endfor %}
+	
+
+
+		</tbody>
+
+</table>
+{% endif %}
+{% endblock%}

@@ -1,0 +1,94 @@
+
+{% extends 'search/base.html' %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/table.css' %}">
+
+		{% if messages %}
+			<div class='alert alert-success'>
+			{% for message in messages %}
+				{{message}}
+			{%endfor%}
+			</div>
+		{%endif%}
+<header>	
+
+
+
+	<h1>
+
+	Freeze and Thaw Under Development  
+
+	</h1>
+
+
+	<form method="get" action ="" >
+	<!--	<button name="d" type="submit"> Download to CSV </button>-->
+		<button onclick="exportTableToCSV('aliquot_detail.csv')">Export Table to CSV </button>
+	</form>
+	</header>
+		
+			<!--	<form method="POST" action="{#% url 'aliquot_detail'  %#}">-->{#% csrf_token %#}
+<!--<table class='update'>-->
+<table id="table_format" class="table table-bordered" >
+	<thead>
+
+		<tr>
+		<!--	<th> Box ID </th>-->
+			<th> AQID   </th>
+			
+			<th> Volume (mL) </th>
+			<th> Box ID </th>
+						
+		</tr>
+		
+		<tr class="notformatted">
+		<!--	<th> Box ID </th>-->
+			<th> AQID   </th>
+			
+			<th> Volume (mL) </th>
+			<th> Box ID </th>
+		
+
+			
+			
+		</tr>
+		</thead>
+		<tbody>
+
+		{% for a in aliquot %}
+							
+		{#% if a.checked_out == 0 %#}		
+			<tr>
+		
+				 
+		
+				<td> {{ a }}</td><!--</strong>- <a href="{#% url 'search:aliquot_update' a.aqid%#}">Update</a></td>-->
+				<td><strong> {#{ a.aqid.volume }#}</strong>  </td>
+				<td><strong> {#{ a.aqid.boxid }#}</strong>  </td>
+
+			</tr>
+		
+		{% endfor %}	
+		</tbody>
+		<tfoot class="foot">
+			<tr class="foot">
+		
+				<td colspan="1"> <button class="floater" name="update" type="submit" >Dispose</button></td>
+				</form>
+				<td colspan="11"> </td>	
+			
+					
+		
+			</tr>
+		</tfoot>
+</table>
+
+
+
+
+{% endblock %}
+
+				

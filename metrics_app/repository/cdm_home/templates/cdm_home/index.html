@@ -1,0 +1,41 @@
+
+
+{% extends "cdm_home/base.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'cdm_home/table.css' %}">
+<header>
+	<h1>US Clinical Data Management Home </h1>
+	<p> Welcome to the US Clinical Data Management App!</p>
+	
+
+	
+
+
+</header>
+<style>
+
+</style>	
+<body>
+
+
+
+</body>	
+<div class="grid-container">
+
+	
+
+	<div class="grid-item">  		<a href="{% url 'search:index' %}"> Repository App</a></div>
+	<div class="grid-item">  		<a href="{% url 'rvpsyndromic:index_rvp' %}"> Syndromic Panel App</a></div>
+	<div class="grid-item">  		<a href="{% url 'rdt:index_rdt' %}"> RDT App</a></div>
+
+
+</div>	
+		
+
+{% endblock %}
+
+
+	
+

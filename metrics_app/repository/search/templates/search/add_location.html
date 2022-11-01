@@ -1,0 +1,36 @@
+
+{% extends "search/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'search/form.css' %}">
+
+<header>
+<h1> Add a Location </h1>
+<p> Add the appropriate information in the fields below </p>
+</header>
+<form action='.' method="POST">
+{% csrf_token%}
+{#{ form|crispy }#}
+<div class="form-row">
+	<div class="form-group col-md-3 mb-0">
+		{{form.sitestate|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.sitecountry|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.sitename|as_crispy_field}}
+	</div>
+	<div class="form-group col-md-3 mb-0">
+		{{form.siteabbr|as_crispy_field}}
+	</div>
+</div>
+
+<input type="submit" class="btn btn-block" value="Submit">
+<br>
+<br>
+</form>
+<br>
+<br>
+{% endblock %}
