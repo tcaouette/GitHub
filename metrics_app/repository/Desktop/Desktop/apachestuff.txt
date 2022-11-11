@@ -1,3 +1,0 @@
-virtual env is in /usr/lib/python3.6/site-packages
-django version 2.1.14
-python verion 3.6.5
