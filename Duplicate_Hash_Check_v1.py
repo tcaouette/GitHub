@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
 
 
 from openpyxl import load_workbook
@@ -21,8 +17,6 @@ from os import listdir
 from os.path import isfile, join
 #######################################################################
 #
-# CSV extraction file for Ruby Project  
-# Author: David Kleppang
 # Revision: D
 # Date: 08/19/2019
 #
